@@ -1,0 +1,8 @@
+node_modules/
+.expo/
+dist/
+npm-debug.log*
+.DS_Store
+.claude/
+AGENTS.md
+CLAUDE.md
