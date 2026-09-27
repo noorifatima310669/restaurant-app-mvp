@@ -1,16 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import {
   Image, Pressable, StyleSheet, Text, View,
 } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { shadows } from '../theme/colors';
 
-const fallbackImage = require('../../assets/menu/truffle-parmesan-fries.png');
-
 function MenuItemCard({ item, isFavourite, onAdd, onToggleFavourite }) {
   const { colors } = useTheme();
-  const [imageFailed, setImageFailed] = useState(false);
   console.log('MenuItemCard rendered:', item.name);
 
   return (
@@ -22,8 +19,7 @@ function MenuItemCard({ item, isFavourite, onAdd, onToggleFavourite }) {
     ]}>
       <View>
         <Image
-          source={imageFailed ? fallbackImage : item.image}
-          onError={() => setImageFailed(true)}
+          source={item.image}
           resizeMode="cover"
           style={styles.image}
         />
