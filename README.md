@@ -1,53 +1,144 @@
-# Urban Fork – Restaurant App MVP
+# 🍽️ Urban Fork – Restaurant App MVP
 
-Urban Fork is a frontend-only premium restaurant experience built with React Native, Expo SDK 57, and JavaScript. Customers can discover dishes, search and favourite menu items, build a cart, apply promotions, choose dine-in or takeaway, track live orders, and reserve a table. Managers receive a focused operations dashboard for orders, reservations, and menu availability. Local persistence is provided by AsyncStorage; no backend or external app-data API is used.
+![React Native](https://img.shields.io/badge/React%20Native-0.86-61DAFB?logo=react&logoColor=black)
+![Expo](https://img.shields.io/badge/Expo%20SDK-57-000020?logo=expo&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?logo=javascript&logoColor=black)
+![Frontend Only](https://img.shields.io/badge/Architecture-Frontend%20Only-4B2142)
+![Fall 2026](https://img.shields.io/badge/Term-Fall%202026-F28C6B)
 
-## Demo Video
+Urban Fork is a frontend-only React Native restaurant application built with Expo. It provides separate Customer and Manager experiences for menu browsing, cart management, reservations, order tracking, restaurant operations, and local persistence.
 
-ADD_GOOGLE_DRIVE_VIDEO_LINK_HERE
+## 🎥 Demo Video
 
-## Quick Start
+### ▶️ Watch Full App Demo
 
-### Requirements
+[Open Urban Fork Demo Video on Google Drive](https://drive.google.com/file/d/19JWpzNvg2EJ85vGqjBb7cAhwE_Q8F0P9/view?usp=drive_link)
 
-- Node.js 20 LTS or newer
-- npm
-- Expo Go on the iPhone
-- iPhone and development computer on the same network
+The demonstration covers the Customer and Manager workflows, including menu browsing, cart management, reservations, order placement, order tracking, theme switching, and manager operations.
 
-### Installation
+## 📱 App Screenshots
 
-```powershell
-cd C:\Users\LENOVO\Desktop\MAD1\restaurant-app-mvp
-npm install
-npx expo start
-```
+All images below are genuine captures included in the repository.
 
-If PowerShell blocks the script shim, use `npm.cmd install` and `npx.cmd expo start`.
+### Authentication
 
-Open Expo Go on the iPhone, choose **Scan QR code**, and scan the terminal/browser QR code. Keep both devices on the same Wi-Fi network. If LAN discovery is unavailable, press `s` in the Expo terminal to confirm Expo Go mode and start with `npx.cmd expo start --tunnel`.
+| Login Validation | Signup |
+|---|---|
+| ![Login Validation](screenshots/01-login-validation.jpeg) | ![Signup](screenshots/02-signup.jpeg) |
 
-## Mock Credentials
+### Customer Experience
+
+| Featured Menu | Search Results |
+|---|---|
+| ![Featured Menu](screenshots/03-menu-featured.jpeg) | ![Search Results](screenshots/07-search-mint-results.jpeg) |
+
+| Menu & Render Counter | Price Sorting |
+|---|---|
+| ![Menu Home and Render Counter](screenshots/04-menu-home-render-counter.jpeg) | ![Price Low to High](screenshots/05-menu-sort-price-low-to-high.jpeg) |
+
+| Cart | Dine-in Order Summary |
+|---|---|
+| ![Cart](screenshots/06-cart.jpeg) | ![Dine-in Order Summary](screenshots/08-order-summary-dine-in.jpeg) |
+
+| Reservation Time Slots | Order Tracking |
+|---|---|
+| ![Reservation Time Slots](screenshots/09-reservation-time-slots.jpeg) | ![Order Tracking](screenshots/10-order-tracking.jpeg) |
+
+| Customer Profile | Reservation Contact & Empty State |
+|---|---|
+| ![Customer Profile Light](screenshots/11-customer-profile-light.jpeg) | ![Reservation Contact and Empty State](screenshots/12-reservation-contact-empty-list.jpeg) |
+
+| Dark Theme Profile | Dark Theme Search |
+|---|---|
+| ![Customer Profile Dark](screenshots/13-customer-profile-dark.jpeg) | ![Dark Theme Search](screenshots/15-search-mint-dark.jpeg) |
+
+### Manager Experience
+
+| Incoming Orders | Reservation Management |
+|---|---|
+| ![Manager Incoming Orders](screenshots/14-manager-incoming-orders.jpeg) | ![Manager Reservations](screenshots/16-manager-reservations.jpeg) |
+
+| Add Menu Item | Available Menu State |
+|---|---|
+| ![Manager Menu Management](screenshots/17-manager-menu-management-add-item.jpeg) | ![Manager Menu Available State](screenshots/18-manager-menu-available-state.jpeg) |
+
+| Availability Management | Manager Profile |
+|---|---|
+| ![Manager Availability Toggle](screenshots/19-manager-menu-availability-toggle.jpeg) | ![Manager Profile Dark](screenshots/20-manager-profile-dark.jpeg) |
+
+### Performance Evidence
+
+| Before Optimization | After Optimization |
+|---|---|
+| ![Console Before Optimization](screenshots/13-console-before.png) | ![Console After Optimization](screenshots/14-console-after.png) |
+
+## ✨ Key Features
+
+- Customer and Manager authentication with role-based navigation.
+- Twenty-item food and drinks menu using unique, optimized local images.
+- Category filtering, favourites, sorting, and unavailable-item states.
+- Search with an exact 400 ms debounce and the five most recent searches.
+- Render evidence plus `React.memo`, `useMemo`, and `useCallback` optimization.
+- Cart quantity management, item removal, and special instructions.
+- Promo codes: `URBAN10`, `DINE15`, and `FEAST20`.
+- Receipt-style order summary with service charge, tax, and discounts.
+- Dine-in table selection and Takeaway pickup-time selection.
+- Table reservations with party-size matching, disabled time slots, confirmation, and cancellation.
+- Live order tracking from Pending to Preparing, Ready, and Served.
+- Coherent Dark and Light themes across every screen.
+- Manager Dashboard for order, reservation, menu, price, and availability management.
+- AsyncStorage persistence for orders, reservations, and menu edits.
+
+## 👤 Demo Accounts
 
 | Role | Email | Password |
 |---|---|---|
 | Customer | `customer@urbanfork.com` | `Urban123` |
 | Manager | `manager@urbanfork.com` | `Manager123` |
 
-Signup also supports Customer and Manager roles. New accounts are mock, in-memory accounts for the current app session.
+Signup can also create an in-memory Customer or Manager account for the current app session.
 
-## Feature Summary
+## 🛠️ Technology Stack
 
-- Polished light and dark themes using the Urban Fork aubergine, coral, olive, and warm ivory palette.
-- Twenty menu items across exactly Starters, Mains, Desserts, and Drinks, each with a bundled local image.
-- Category browsing, 400 ms debounced search, five recent searches, favourites, five sort/view modes, pull-to-refresh, and back-to-top control.
-- Immutable cart reducer with quantities, removal, instructions, promo codes, totals, and a live tab badge.
-- Receipt-style order summary with service charge, tax, promotional discount, dine-in table selection, and takeaway time selection.
-- Persisted order tracking with automatic Pending → Preparing → Ready → Served transitions.
-- Reservation availability, hourly slots, party/table matching, confirmation, cancellation, and manager approval.
-- Manager controls for order status, reservations, item pricing, availability, and adding menu items.
+| Technology | Usage |
+|---|---|
+| React Native 0.86 | Cross-platform mobile interface |
+| Expo SDK 57 | Development, bundling, and Expo Go workflow |
+| JavaScript | Application language |
+| React Navigation | Bottom tabs, nested stacks, and role-based navigation |
+| Context API | Shared authentication, theme, menu, order, reservation, and cart state |
+| React Hooks | Screen state, effects, refs, memoization, and reusable logic |
+| `useReducer` | Immutable cart and order transitions |
+| AsyncStorage | Local persistence |
+| Ionicons | Consistent interface icons |
 
-## App Architecture
+No backend, Firebase, external database, or external app-data API is used. The application is frontend-only as required.
+
+## 📂 Project Structure
+
+```text
+restaurant-app-mvp/
+├── A1/
+│   ├── SRS.pdf
+│   ├── UML_Diagrams.pdf
+│   └── UML/
+├── assets/
+│   └── menu/
+├── screenshots/
+├── src/
+│   ├── components/
+│   ├── context/
+│   ├── data/
+│   ├── hooks/
+│   ├── navigation/
+│   ├── reducers/
+│   ├── screens/
+│   └── theme/
+├── App.js
+└── README.md
+```
+
+### Application Architecture
 
 ```text
 SafeAreaProvider
@@ -57,189 +148,138 @@ SafeAreaProvider
             └── OrdersProvider
                 └── CartProvider
                     └── AppNavigator
-                        ├── Customer bottom tabs + nested stacks
-                        └── Manager bottom tabs
+                        ├── Customer tabs + nested stacks
+                        └── Manager tabs
 ```
 
-Each provider has one responsibility. `RestaurantContext` owns shared menu and reservation state, `OrdersContext` owns the order lifecycle, and `CartContext` owns the temporary basket. Persisted providers hydrate before navigation renders, preventing an empty-state flash.
+The providers remain focused: authentication and theming are independent, restaurant state owns menu and reservations, order state owns tracking, and cart state owns the current basket. Persisted providers hydrate before protected navigation renders, preventing empty-state flashes and circular dependencies.
 
-## Folder Structure
+## 🚀 Installation & Running
 
-```text
-restaurant-app-mvp/
-├── App.js
-├── assets/
-│   └── menu/                 # 20 local menu photographs
-├── src/
-│   ├── components/           # Reusable cards, rows, chips and states
-│   ├── context/              # Auth, theme, cart, restaurant and orders
-│   ├── data/                 # Menu, users, tables and promo codes
-│   ├── hooks/                # useForm, useDebounce, useReservation
-│   ├── navigation/           # Role-based tabs and nested stacks
-│   ├── reducers/             # Pure cart and orders reducers
-│   ├── screens/              # Customer and manager screens
-│   └── theme/                # Shared light/dark colour tokens
-└── README.md
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/noorifatima310669/restaurant-app-mvp.git
 ```
 
-## Hooks Reference
+### 2. Enter the project
 
-| Screen / Component | Hook | Purpose |
+```bash
+cd restaurant-app-mvp
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start Expo
+
+```bash
+npx expo start
+```
+
+On Windows PowerShell, use the command shims if npm or npx scripts are blocked:
+
+```powershell
+npm.cmd install
+npx.cmd expo start
+```
+
+### 5. Open on iPhone or Android
+
+Install Expo Go, keep the phone and development computer on the same network, and scan the Expo QR code. Use the same Expo account on the development machine and Expo Go if authentication is requested.
+
+## 🪝 Hooks Used
+
+| Hook / Technique | Screen or Feature | Purpose |
 |---|---|---|
-| LoginScreen | `useForm` | Controlled values, validation, immediate field-error clearing, submit and reset |
-| LoginScreen | `useState` | Login/signup mode, secure-text visibility, and submission state |
-| MenuScreen | `useDebounce` | Delays search propagation by exactly 400 ms |
-| MenuScreen | `useMemo` | One derived category/search/sort/favourites pipeline |
-| MenuScreen | `useRef` | Input focus, FlatList scrolling, previous query, render counter, and timers |
-| MenuScreen | `useCallback` | Stable add-to-cart and favourite handlers for memoized cards |
-| MenuItemCard | `React.memo` | Skips renders when card props remain unchanged |
-| CartContext | `useReducer` | Immutable cart action handling |
-| OrderSummaryScreen | `useMemo` | Subtotal, service, tax, discount, and grand total |
-| ReservationScreen | `useReservation` | All reservation data, availability, validation, create, and cancel behaviour |
-| OrdersContext | `useReducer` | Persisted order creation and guarded status changes |
-| OrdersContext | `useEffect` | One-second tracking clock, automatic progression, cleanup, and persistence |
-| ThemeContext / AuthContext | `useContext` | App-wide theme and authenticated-user access |
+| `useState` | Login, Menu, Order Summary, Manager Dashboard | Controlled inputs, selections, loading, modal, and interface state |
+| `useEffect` | Menu, providers, order tracking | Timed loading, persistence hydration, storage updates, and interval cleanup |
+| `useRef` | MenuScreen | Search focus, FlatList scrolling, previous query, render count, and timer references |
+| `useContext` | All screens through custom context hooks | Accesses authentication, theme, cart, restaurant, and order state |
+| `useReducer` | CartContext, OrdersContext | Applies predictable immutable state transitions |
+| `useMemo` | MenuScreen, OrderSummaryScreen, providers | Derives filtered menu data, receipt totals, counts, and stable context values |
+| `useCallback` | MenuScreen and providers | Stabilizes add-to-cart, favourite, render, and provider action functions |
+| `React.memo` | MenuItemCard | Avoids card renders when its props are unchanged |
+| `useForm` | LoginScreen | Reusable controlled values, validation, submission, reset, and validity |
+| `useDebounce` | MenuScreen | Delays search propagation by exactly 400 ms |
+| `useReservation` | ReservationScreen | Owns availability, validation, contact, create, and cancellation logic |
 
-## Customer Flow
+## 🧠 Context API vs Prop Drilling
 
-1. Sign in with the customer credentials or create a Customer account.
-2. Wait for the 1500 ms menu loading state, then browse categories.
-3. Search, revisit a recent query, favourite dishes, choose a sort, and add available dishes.
-4. Adjust quantity, remove items, add instructions, and apply `URBAN10`, `DINE15`, or `FEAST20`.
-5. Review calculated totals and select Dine-in with a table or Takeaway with a pickup time.
-6. Place the order and watch it progress at 0, 10, 20, and 30 seconds.
-7. Book and cancel reservations from Reserve.
-8. Change the theme or sign out from Profile.
+Context shares authentication, theme, cart, menu, reservation, and order state across deeply nested screens.<br>
+It avoids passing the same values through navigators and intermediate components that do not use them.<br>
+Focused custom hooks such as `useAuth` and `useTheme` keep consumption clear and guarded.<br>
+Direct props remain appropriate for local parent-child data, such as a card action callback.<br>
+Provider values are memoized and separated by domain to limit unnecessary updates.<br>
+A drawback is that consumers can re-render whenever their Context value changes.
 
-## Manager Flow
+## 🛒 useReducer vs useState
 
-1. Sign in with the manager credentials.
-2. Review the operational summary and Incoming Orders segment.
-3. Move active orders between Pending, Preparing, Ready, Served, or Cancelled.
-4. Accept or decline pending reservations.
-5. Add menu items, edit PKR prices, and toggle availability; customer menu state updates immediately.
-6. Change the theme or sign out from Profile.
+`useReducer` suits the cart because eight named actions update related fields under explicit immutable rules.<br>
+It centralizes quantity, note, removal, clearing, and promotion transitions in one pure function.<br>
+This makes complex transitions easier to inspect and test than scattered setter calls.<br>
+`useState` is enough for a single independent value such as search text, selected category, or modal visibility.
 
-## Context vs Prop Drilling
-
-Context makes authenticated user, theme, cart, menu, reservations, and orders available to deeply nested screens without passing props through every navigator and intermediate component. It keeps cross-cutting state close to its domain and gives each feature a small custom hook. Prop drilling is still preferable for local, explicit parent-child data such as an individual card callback. A Context value should remain focused and memoized. One drawback is that consumers can re-render whenever the Context value changes, even if they only use part of that value.
-
-## useReducer vs useState
-
-`useReducer` fits the cart because eight named actions update related fields under clear immutable rules. It centralises transitions and makes them easy to review or test. `useState` would scatter quantity, notes, and promotion rules across event handlers. For a single independent value—such as the selected category, search text, or modal visibility—`useState` is simpler and entirely sufficient.
-
-## Cart Reducer Test Matrix
+## 🧪 Cart Reducer Test Cases
 
 | Action | Initial State | Expected State |
 |---|---|---|
-| `ADD_ITEM` new | Empty items | Item appended with `quantity: 1` and an empty note |
-| `ADD_ITEM` existing | Same item at quantity 1 | Same item at quantity 2; no duplicate row |
-| `INCREMENT` | Item at quantity 2 | Item at quantity 3 |
-| `DECREMENT` | Item at quantity 2 | Item at quantity 1 |
-| `DECREMENT` to zero | Item at quantity 1 | Item removed from `items` |
-| `UPDATE_NOTE` | Item with empty note | Only matching item receives the new note |
-| `APPLY_PROMO` | No promo | `promoCode` and `discountPercent` set from payload |
-| `REMOVE_PROMO` | `DINE15`, 15% | Promo resets to `null` and 0 |
-| `CLEAR_CART` | Items and promo present | Exact initial state restored |
+| `ADD_ITEM` new | Empty items | Item added with `quantity: 1` and an empty note |
+| `ADD_ITEM` existing | Matching item at quantity 1 | Matching item becomes quantity 2 without a duplicate row |
+| `INCREMENT` | Matching item at quantity 2 | Matching item becomes quantity 3 |
+| `DECREMENT` | Matching item at quantity 2 | Matching item becomes quantity 1 |
+| `DECREMENT` to zero | Matching item at quantity 1 | Matching item is removed |
+| `REMOVE_ITEM` | Multiple items | Only the matching item is removed |
+| `UPDATE_NOTE` | Item with an empty note | Only the matching item receives the instruction |
+| `APPLY_PROMO` | No promotion | `promoCode` and `discountPercent` are set |
+| `REMOVE_PROMO` | `DINE15` at 15% | Promotion resets to `null` and 0 |
+| `CLEAR_CART` | Items and promotion present | Exact initial cart state is restored |
 
-## Q4 Dependency-Array Note
+## 🔄 useEffect Dependency Note
 
-If the original Question 4 filtering effect used an empty dependency array, React would run it only after the first render. Later changes to the selected category, search value, sorting choice, favourites, or manager-edited menu would not trigger that effect, so the displayed list would become stale. Adding every dependency could keep it synchronised, but it would still duplicate data that React can derive from existing state. The final implementation therefore replaces that effect and separate `filteredItems` state with one `useMemo` pipeline. Its dependency list names every source value, making updates predictable while avoiding extra state-setting renders and inconsistent copies of the menu.
+If the original Question 4 filtering effect used an empty dependency array, React would run it only after the first render. Later changes to the selected category, search value, sorting choice, favourites, or manager-edited menu would not trigger that effect, so the displayed list would become stale. Adding every dependency could keep it synchronized, but it would still duplicate data that React can derive from existing state. The final implementation therefore replaces that effect and separate `filteredItems` state with one `useMemo` pipeline. Its dependency list names every source value, making updates predictable while avoiding extra state-setting renders and inconsistent menu copies.
 
-## When Not to Use useMemo or useCallback
+## ⚡ Performance Optimization
 
-`useMemo` and `useCallback` are performance tools, not correctness tools. Avoid them for trivial calculations, tiny components, or values whose dependencies change on every render; the bookkeeping can cost more than recalculation and makes code harder to read. Do not use them to hide missing dependencies or duplicate state. Measure or identify a concrete stability need first. Urban Fork uses them where list filtering/sorting is meaningful and where stable handlers help the memoized `MenuItemCard`; ordinary event handlers and simple labels remain direct.
+`MenuItemCard` uses `React.memo` so unchanged cards can skip renders. MenuScreen passes stable add-to-cart and favourite handlers through `useCallback`, and its `renderItem` callback is memoized as well. Category filtering, debounced search, sorting, and favourites are combined in one `useMemo` pipeline instead of duplicated state. Order Summary also memoizes receipt calculations. These tools are not used for trivial values or as substitutes for correct dependencies; unnecessary memoization can add complexity and cost more than recalculation. The genuine console evidence is shown in [Before Optimization](screenshots/13-console-before.png) and [After Optimization](screenshots/14-console-after.png).
 
-## Persistence
+## 💾 Local Persistence
 
-AsyncStorage hydrates before protected navigation is displayed and safely falls back if stored JSON is invalid.
+AsyncStorage loads saved data before protected navigation appears and safely handles invalid stored JSON.
 
-| Key | Data |
+| Storage Key | Persisted Data |
 |---|---|
-| `@urbanfork_orders` | Created orders and their latest statuses |
+| `@urbanfork_orders` | Orders and their latest tracking status |
 | `@urbanfork_reservations` | Reservation requests and manager decisions |
-| `@urbanfork_menu` | Manager-created items, edited prices, and availability |
+| `@urbanfork_menu` | Added items, price changes, and availability edits |
 
-## Menu Image Assets
+Authentication and the active cart remain session state. Menu images are bundled locally through explicit static `require(...)` mappings.
 
-All 20 menu items use local PNG files in `assets/menu/`. They are original AI-generated editorial food photographs produced for this project, contain no watermarks or third-party branding, and do not require a network connection. `MenuItemCard` also falls back to the local truffle-fries image if an image fails to render. Manager-created items intentionally use that same bundled house fallback until a dedicated photo is added.
+## 👥 User Roles
 
-## Screenshots
+### Customer
 
-The following are documentation slots only. Genuine simulator/device captures must be placed at these paths; no screenshot files are fabricated.
+Customers can sign in or create an account, browse and search the menu, sort and favourite dishes, manage a cart, apply promotions, choose Dine-in or Takeaway, place and track orders, reserve tables, change themes, and sign out.
 
-| # | Required capture | Preview slot |
-|---:|---|---|
-| 1 | Login validation | ![Login validation](screenshots/01-login-validation.jpeg) |
-| 2 | Customer login success | ![Customer login success](screenshots/02-customer-login-success.jpeg) |
-| 3 | Signup | ![Signup](screenshots/03-signup.jpeg) |
-| 4 | Menu loading | ![Menu loading](screenshots/04-menu-loading.jpeg) |
-| 5 | Menu | ![Menu](screenshots/05-menu.jpeg) |
-| 6 | Category filter | ![Category filter](screenshots/06-category-filter.jpeg) |
-| 7 | Search and render counter | ![Search and render counter](screenshots/07-search-render-counter.jpeg) |
-| 8 | Cart | ![Cart](screenshots/08-cart.jpeg) |
-| 9 | Promo applied | ![Promo applied](screenshots/09-promo-applied.jpeg) |
-| 10 | Order summary | ![Order summary](screenshots/10-order-summary.jpeg) |
-| 11 | Order type | ![Order type](screenshots/11-order-type.jpeg) |
-| 12 | Order tracking | ![Order tracking](screenshots/12-order-tracking.jpeg) |
-| 13 | Console before | ![Console before](screenshots/13-console-before.jpeg) |
-| 14 | Console after | ![Console after](screenshots/14-console-after.jpeg) |
-| 15 | Reservation form | ![Reservation form](screenshots/15-reservation-form.jpeg) |
-| 16 | Disabled reservation slot | ![Disabled reservation slot](screenshots/16-disabled-slot.jpeg) |
-| 17 | Reservation confirmation | ![Reservation confirmation](screenshots/17-reservation-confirmation.jpeg) |
-| 18 | My reservations | ![My reservations](screenshots/18-my-reservations.jpeg) |
-| 19 | Customer profile | ![Customer profile](screenshots/19-customer-profile.jpeg) |
-| 20 | Dark theme | ![Dark theme](screenshots/20-dark-theme.jpeg) |
-| 21 | Manager dashboard | ![Manager dashboard](screenshots/21-manager-dashboard.jpeg) |
-| 22 | Manager orders | ![Manager orders](screenshots/22-manager-orders.jpeg) |
-| 23 | Manager reservations | ![Manager reservations](screenshots/23-manager-reservations.jpeg) |
-| 24 | Manager menu management | ![Manager menu management](screenshots/24-manager-menu-management.jpeg) |
-| 25 | Manager profile | ![Manager profile](screenshots/25-manager-profile.jpeg) |
+### Manager
 
-### Screenshot Checklist
+Managers receive a dedicated dashboard for incoming orders, reservation decisions, menu-item creation, price editing, and availability control. Manager navigation is role-gated and excludes customer-only tabs.
 
-- [ ] `screenshots/01-login-validation.jpeg`
-- [ ] `screenshots/02-customer-login-success.jpeg`
-- [ ] `screenshots/03-signup.jpeg`
-- [ ] `screenshots/04-menu-loading.jpeg`
-- [ ] `screenshots/05-menu.jpeg`
-- [ ] `screenshots/06-category-filter.jpeg`
-- [ ] `screenshots/07-search-render-counter.jpeg`
-- [ ] `screenshots/08-cart.jpeg`
-- [ ] `screenshots/09-promo-applied.jpeg`
-- [ ] `screenshots/10-order-summary.jpeg`
-- [ ] `screenshots/11-order-type.jpeg`
-- [ ] `screenshots/12-order-tracking.jpeg`
-- [ ] `screenshots/13-console-before.jpeg`
-- [ ] `screenshots/14-console-after.jpeg`
-- [ ] `screenshots/15-reservation-form.jpeg`
-- [ ] `screenshots/16-disabled-slot.jpeg`
-- [ ] `screenshots/17-reservation-confirmation.jpeg`
-- [ ] `screenshots/18-my-reservations.jpeg`
-- [ ] `screenshots/19-customer-profile.jpeg`
-- [ ] `screenshots/20-dark-theme.jpeg`
-- [ ] `screenshots/21-manager-dashboard.jpeg`
-- [ ] `screenshots/22-manager-orders.jpeg`
-- [ ] `screenshots/23-manager-reservations.jpeg`
-- [ ] `screenshots/24-manager-menu-management.jpeg`
-- [ ] `screenshots/25-manager-profile.jpeg`
+## 🎬 Complete Demo Flow
 
-The console screenshots must be genuine captures demonstrating the intentional `MenuItemCard rendered:` log before and after observing memoization behaviour.
+**Customer**
 
-## Assignment Coverage
+Login/Signup → Browse Menu → Search/Sort → Add to Cart → Apply Promo → Order Summary → Dine-in/Takeaway → Place Order → Track Order → Reserve Table → Profile/Theme
 
-- **Q3:** Reusable controlled login/signup form, all validation, exact 1000 ms authentication simulation, roles, mock credentials, loading state, and password controls.
-- **Q4:** 20-item local menu, exact 1500 ms initial load, cleanup, error/retry UI, categories, unavailable states, specials, pull-to-refresh, and count title.
-- **Q5:** 400 ms custom debounce, input/list refs, recent searches, render counter, empty state, and back-to-top.
-- **Q6:** Guarded Auth and Theme contexts, profile, theme switch, logout, and role-gated navigation.
-- **Q7:** Pure immutable reducer, instructions, quantities, promos, clear confirmation, totals, and cart badge.
-- **Q8:** Memoized receipt calculations, memoized cards, stable handlers, favourites, sort/view modes, and one derived list pipeline.
-- **Q9:** Three reusable hooks plus availability-aware, validated, confirm-before-save reservations.
-- **Q10:** Persisted order tracking, automatic/manual guarded status changes, manager operations, and shared live menu edits.
+**Manager**
 
-## Manual Submission Work
+Login → Dashboard → Incoming Orders → Reservation Management → Menu Management → Availability Management → Profile/Theme
 
-1. Capture the 25 genuine screenshots listed above on an iPhone or iOS simulator.
-2. Record the required demo video (three minutes or less).
-3. Replace `ADD_GOOGLE_DRIVE_VIDEO_LINK_HERE` with the shareable Google Drive URL.
-4. Push the local Git repository to GitHub only if/when a remote is configured.
+---
+
+**Urban Fork – Restaurant App MVP**<br>
+**Fall 2026**<br>
+Built with React Native & Expo.
