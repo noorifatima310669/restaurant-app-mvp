@@ -1,0 +1,4 @@
+
+> urban-fork@1.0.0 lint
+> eslint App.js src server --ignore-pattern server/node_modules
+

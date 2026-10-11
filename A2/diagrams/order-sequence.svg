@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="780" height="740" preserveAspectRatio="xMinYMin meet" viewBox="0 0 780 740" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="780" height="740"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-740)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="28" y="710" style="font-family: UrbanArial; font-size: 20px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,1420) scale(1,-1)">Customer places an order - Assignment 2</text>
+			<rect x="16" y="622" width="148" height="53" rx="12" ry="12" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,97%,94%); fill-rule: evenodd;"/>
+			<text x="61.825927734375" y="651" style="font-family: UrbanArial; font-size: 13px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,1302) scale(1,-1)">Customer</text>
+			<path d="M 90,621 L 90,55 Z" style="stroke: rgb(50%,50%,50%); stroke-linecap: butt; stroke-width: 1; stroke-dasharray: 5, 5;"/>
+			<rect x="186" y="622" width="148" height="53" rx="12" ry="12" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,97%,94%); fill-rule: evenodd;"/>
+			<text x="207.247802734375" y="651" style="font-family: UrbanArial; font-size: 13px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,1302) scale(1,-1)">Existing Expo App</text>
+			<path d="M 260,621 L 260,55 Z" style="stroke: rgb(50%,50%,50%); stroke-linecap: butt; stroke-width: 1; stroke-dasharray: 5, 5;"/>
+			<rect x="421" y="622" width="148" height="53" rx="12" ry="12" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,97%,94%); fill-rule: evenodd;"/>
+			<text x="450.569580078125" y="651" style="font-family: UrbanArial; font-size: 13px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,1302) scale(1,-1)">Express Server</text>
+			<path d="M 495,621 L 495,55 Z" style="stroke: rgb(50%,50%,50%); stroke-linecap: butt; stroke-width: 1; stroke-dasharray: 5, 5;"/>
+			<rect x="616" y="622" width="148" height="53" rx="12" ry="12" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,97%,94%); fill-rule: evenodd;"/>
+			<text x="661.095947265625" y="651" style="font-family: UrbanArial; font-size: 13px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,1302) scale(1,-1)">MongoDB</text>
+			<path d="M 690,621 L 690,55 Z" style="stroke: rgb(50%,50%,50%); stroke-linecap: butt; stroke-width: 1; stroke-dasharray: 5, 5;"/>
+			<path d="M 90,593 L 260,593 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="260 593, 253.6969 596.0448, 253.6969 589.9552" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="147.492431640625" y="601.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1202) scale(1,-1)">Confirm order</text>
+			<path d="M 260,556 L 495,556 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="495 556, 488.6969 559.0448, 488.6969 552.9552" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="313.988037109375" y="564.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1128) scale(1,-1)">POST /orders + JWT + item IDs</text>
+			<path d="M 495,519 L 690,519 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="690 519, 683.6969 522.0448, 683.6969 515.9552" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="527.217041015625" y="527.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,1054) scale(1,-1)">Read current menu prices / table</text>
+			<path d="M 690,482 L 495,482 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="495 482, 501.3031 478.9552, 501.3031 485.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="530.220703125" y="490.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,980) scale(1,-1)">Prices, availability and capacity</text>
+			<path d="M 495,445 L 533,445 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 533,445 L 533,429 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 533,429 L 495,429 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="495 429, 501.3031 425.9552, 501.3031 432.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="540" y="435" style="font-family: UrbanArial; font-size: 9px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,870) scale(1,-1)">Validate; calculate server total</text>
+			<path d="M 495,408 L 690,408 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="690 408, 683.6969 411.0448, 683.6969 404.9552" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="516.45703125" y="416.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,832) scale(1,-1)">Insert Pending order / price snapshots</text>
+			<path d="M 690,371 L 495,371 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="495 371, 501.3031 367.9552, 501.3031 374.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="567.985107421875" y="379.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,758) scale(1,-1)">Saved order</text>
+			<path d="M 495,334 L 260,334 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="260 334, 266.3031 330.9552, 266.3031 337.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="316.3369140625" y="342.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,684) scale(1,-1)">201 + authoritative order / total</text>
+			<path d="M 260,297 L 298,297 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 298,297 L 298,281 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 298,281 L 260,281 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="260 281, 266.3031 277.9552, 266.3031 284.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="305" y="287" style="font-family: UrbanArial; font-size: 9px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,574) scale(1,-1)">Clear cart only after success</text>
+			<path d="M 260,260 L 90,260 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="90 260, 96.30313 256.9552, 96.30313 263.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="137.982666015625" y="268.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,536) scale(1,-1)">Show confirmation</text>
+			<path d="M 260,223 L 495,223 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="495 223, 488.6969 226.0448, 488.6969 219.9552" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="309.224365234375" y="231.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,462) scale(1,-1)">GET /orders/my every 10 seconds</text>
+			<path d="M 495,186 L 690,186 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="690 186, 683.6969 189.0448, 683.6969 182.9552" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="518.212646484375" y="194.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,388) scale(1,-1)">Query authenticated customer orders</text>
+			<path d="M 690,149 L 495,149 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="495 149, 501.3031 145.9552, 501.3031 152.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="526.96435546875" y="157.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,314) scale(1,-1)">Latest manager-controlled status</text>
+			<path d="M 495,112 L 260,112 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="260 112, 266.3031 108.9552, 266.3031 115.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="347.6083984375" y="120.0" style="font-family: UrbanArial; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,240) scale(1,-1)">200 + order list</text>
+			<text x="30" y="25" style="font-family: UrbanArial; font-size: 10px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,50) scale(1,-1)">Failed POST retains cart. Statuses never advance from local demo timers.</text>
+		</g>
+	</g>
+</svg>

@@ -70,19 +70,12 @@ export default function LoginScreen() {
 
   const submit = handleSubmit(async (formValues) => {
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const result = mode === 'login'
-      ? login(formValues.email, formValues.password)
-      : signup(formValues);
-    if (!result) {
-      setIsSubmitting(false);
-      Alert.alert(
-        mode === 'login' ? 'Unable to sign in' : 'Account already exists',
-        mode === 'login'
-          ? 'The email or password is incorrect. Please check your details and try again.'
-          : 'An account already uses this email. Try signing in instead.',
-      );
-    }
+    try {
+      if (mode === 'login') await login(formValues.email, formValues.password);
+      else await signup(formValues);
+    } catch (error) {
+      Alert.alert(mode === 'login' ? 'Unable to sign in' : 'Unable to create account', error.message);
+    } finally { setIsSubmitting(false); }
   });
 
   return (
@@ -176,7 +169,6 @@ export default function LoginScreen() {
                 <View style={styles.roleRow}>
                   {[
                     ['customer', 'Customer', 'person-outline'],
-                    ['manager', 'Manager', 'briefcase-outline'],
                   ].map(([role, label, icon]) => {
                     const selected = values.role === role;
                     return (

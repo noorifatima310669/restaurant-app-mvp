@@ -1,0 +1,57 @@
+Starting Metro Bundler
+
+Android Bundled 6964ms node_modules\expo\AppEntry.js (965 modules)
+
+› Assets (56):
+assets\menu\berry-sparkler.png (262KB)
+assets\menu\burnt-basque-cheesecake.png (267KB)
+assets\menu\chocolate-lava-cake.png (272KB)
+assets\menu\creamy-pesto-penne.png (279KB)
+assets\menu\crispy-calamari.png (276KB)
+assets\menu\firecracker-beef.png (298KB)
+assets\menu\halloumi-bites.png (294KB)
+assets\menu\herb-chicken-bowl.png (306KB)
+assets\menu\korean-glazed-wings.png (300KB)
+assets\menu\lotus-tiramisu.png (276KB)
+assets\menu\mango-panna-cotta.png (224KB)
+assets\menu\mediterranean-salmon.png (300KB)
+assets\menu\mint-citrus-cooler.png (246KB)
+assets\menu\peach-iced-tea.png (253KB)
+assets\menu\pistachio-milk-cake.png (280KB)
+assets\menu\smoky-hummus-plate.png (294KB)
+assets\menu\sparkling-mineral-water.png (290KB)
+assets\menu\truffle-parmesan-fries.png (284KB)
+assets\menu\urban-smash-burger.png (253KB)
+assets\menu\vanilla-cold-brew.png (260KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\AntDesign.ttf (130KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\Entypo.ttf (66KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\EvilIcons.ttf (13KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\Feather.ttf (56KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\FontAwesome.ttf (166KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\FontAwesome5_Brands.ttf (134KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\FontAwesome5_Regular.ttf (34KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\FontAwesome5_Solid.ttf (203KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\FontAwesome6_Brands.ttf (209KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\FontAwesome6_Regular.ttf (68KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\FontAwesome6_Solid.ttf (424KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\Fontisto.ttf (314KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\Foundation.ttf (57KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\Ionicons.ttf (390KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\MaterialCommunityIcons.ttf (1.3MB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\MaterialIcons.ttf (357KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\Octicons.ttf (69KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\SimpleLineIcons.ttf (54KB)
+node_modules\@expo\vector-icons\build\vendor\react-native-vector-icons\Fonts\Zocial.ttf (26KB)
+node_modules\@react-navigation\elements\lib\module\assets\back-icon-mask.png (653B)
+node_modules\@react-navigation\elements\lib\module\assets\back-icon.png (4 variations | 152B)
+node_modules\@react-navigation\elements\lib\module\assets\clear-icon.png (4 variations | 425B)
+node_modules\@react-navigation\elements\lib\module\assets\close-icon.png (4 variations | 235B)
+node_modules\@react-navigation\elements\lib\module\assets\search-icon.png (4 variations | 599B)
+
+› android bundles (1):
+_expo/static/js/android/AppEntry-ddcb7f67240b035815d37bc31e1cecc4.hbc (2.4MB)
+
+› Files (1):
+metadata.json (3.7KB)
+
+Exported: dist/android

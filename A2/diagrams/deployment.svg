@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="780" height="390" preserveAspectRatio="xMinYMin meet" viewBox="0 0 780 390" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="780" height="390"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-390)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="28" y="355" style="font-family: UrbanArial; font-size: 20px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,710) scale(1,-1)">Deployment - Phone, Laptop and MongoDB Atlas</text>
+			<rect x="25" y="148" width="205" height="115" rx="12" ry="12" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,97%,94%); fill-rule: evenodd;"/>
+			<text x="47.65283203125" y="239" style="font-family: UrbanArial; font-size: 13px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,478) scale(1,-1)">Customer / Manager Phone</text>
+			<text x="87.4755859375" y="219" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,438) scale(1,-1)">Existing Expo app</text>
+			<text x="89.98046875" y="203" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,406) scale(1,-1)">Auth, cart and UI</text>
+			<text x="64.82666015625" y="187" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,374) scale(1,-1)">BASE_URL = laptop LAN IP</text>
+			<rect x="285" y="148" width="210" height="115" rx="12" ry="12" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,97%,94%); fill-rule: evenodd;"/>
+			<text x="341.221435546875" y="239" style="font-family: UrbanArial; font-size: 13px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,478) scale(1,-1)">Laptop / Express</text>
+			<text x="359.4189453125" y="219" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,438) scale(1,-1)">0.0.0.0 : 5000</text>
+			<text x="339.4287109375" y="203" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,406) scale(1,-1)">JWT / roles / validation</text>
+			<text x="336.77734375" y="187" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,374) scale(1,-1)">Controllers + Mongoose</text>
+			<rect x="550" y="148" width="205" height="115" rx="12" ry="12" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,97%,94%); fill-rule: evenodd;"/>
+			<text x="607.339599609375" y="239" style="font-family: UrbanArial; font-size: 13px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,478) scale(1,-1)">MongoDB Atlas</text>
+			<text x="591.36962890625" y="219" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,438) scale(1,-1)">Users / MenuItems / Tables</text>
+			<text x="603.8720703125" y="203" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,406) scale(1,-1)">Reservations / Orders</text>
+			<text x="589.6875" y="187" style="font-family: UrbanArial; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,374) scale(1,-1)">Shared authoritative records</text>
+			<path d="M 230,232 L 285,232 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="285 232, 278.6969 235.0448, 278.6969 228.9552" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="247.056640625" y="240.0" style="font-family: UrbanArial; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,480) scale(1,-1)">HTTP</text>
+			<path d="M 495,232 L 550,232 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="550 232, 543.6969 235.0448, 543.6969 228.9552" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="515.1640625" y="240.0" style="font-family: UrbanArial; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,480) scale(1,-1)">TLS</text>
+			<path d="M 285,180 L 230,180 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="230 180, 236.3031 176.9552, 236.3031 183.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="246.83203125" y="188.0" style="font-family: UrbanArial; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,376) scale(1,-1)">JSON</text>
+			<path d="M 550,180 L 495,180 Z" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1.2;"/>
+			<polygon points="495 180, 501.3031 176.9552, 501.3031 183.0448" style="stroke: rgb(29%,12%,25%); stroke-linecap: butt; stroke-width: 1; fill: rgb(29%,12%,25%); fill-rule: evenodd;"/>
+			<text x="514.05078125" y="188.0" style="font-family: UrbanArial; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,376) scale(1,-1)">Data</text>
+			<text x="25" y="105" style="font-family: UrbanArial; font-size: 11px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,210) scale(1,-1)">Phone -&gt; Laptop: JSON REST requests + Bearer token; same Wi-Fi / permitted firewall port.</text>
+			<text x="25" y="82" style="font-family: UrbanArial; font-size: 11px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,164) scale(1,-1)">Laptop -&gt; Atlas: private MONGO_URI stays in ignored server/.env; never bundled in the app.</text>
+			<text x="25" y="59" style="font-family: UrbanArial; font-size: 11px;fill: rgb(29%,12%,25%); stroke:none;" transform="translate(0,118) scale(1,-1)">Orders poll every exactly 10 seconds. Atlas / physical-device verification remains manual.</text>
+		</g>
+	</g>
+</svg>

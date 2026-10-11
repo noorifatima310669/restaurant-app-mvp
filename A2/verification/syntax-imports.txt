@@ -1,0 +1,5 @@
+
+> urban-fork@1.0.0 check:syntax
+> node scripts/check-syntax.cjs
+
+Syntax/import checks passed: 59 JavaScript files.

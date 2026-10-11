@@ -1,285 +1,321 @@
-# 🍽️ Urban Fork – Restaurant App MVP
+# Urban Fork — MAD Assignment 2
 
-![React Native](https://img.shields.io/badge/React%20Native-0.86-61DAFB?logo=react&logoColor=black)
-![Expo](https://img.shields.io/badge/Expo%20SDK-57-000020?logo=expo&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?logo=javascript&logoColor=black)
-![Frontend Only](https://img.shields.io/badge/Architecture-Frontend%20Only-4B2142)
-![Fall 2026](https://img.shields.io/badge/Term-Fall%202026-F28C6B)
+**Restaurant App with Server and Database**
 
-Urban Fork is a frontend-only React Native restaurant application built with Expo. It provides separate Customer and Manager experiences for menu browsing, cart management, reservations, order tracking, restaurant operations, and local persistence.
+Assignment 2 extends the existing Assignment 1 frontend with **React Native + Expo**, **Node.js + Express**, **MongoDB Atlas**, **Mongoose**, and **JWT Authentication**. Customers and managers share server-backed menu data, orders, and reservations.
 
-## 🎥 Demo Video
+## 🎥 Assignment 2 Demo Video
 
-### ▶️ Watch Full App Demo
+[Watch Assignment 2 Demo Video](https://drive.google.com/file/d/1XNdnmZnqBL7HFeOmcs_VECZ5fO9W0Zkm/view?usp=sharing)
 
-[Open Urban Fork Demo Video on Google Drive](https://drive.google.com/file/d/19JWpzNvg2EJ85vGqjBb7cAhwE_Q8F0P9/view?usp=drive_link)
+The video demonstrates the Assignment 2 app/server workflow.
 
-The demonstration covers the Customer and Manager workflows, including menu browsing, cart management, reservations, order placement, order tracking, theme switching, and manager operations.
+## Assignment 2 status
 
-## 📱 App Screenshots
+The table records implemented work; screenshot availability and previously executed checks are documented separately below.
 
-All images below are genuine captures included in the repository.
-
-### Authentication
-
-| Login Validation | Signup |
-|---|---|
-| ![Login Validation](screenshots/01-login-validation.jpeg) | ![Signup](screenshots/02-signup.jpeg) |
-
-### Customer Experience
-
-| Featured Menu | Search Results |
-|---|---|
-| ![Featured Menu](screenshots/03-menu-featured.jpeg) | ![Search Results](screenshots/07-search-mint-results.jpeg) |
-
-| Menu & Render Counter | Price Sorting |
-|---|---|
-| ![Menu Home and Render Counter](screenshots/04-menu-home-render-counter.jpeg) | ![Price Low to High](screenshots/05-menu-sort-price-low-to-high.jpeg) |
-
-| Cart | Dine-in Order Summary |
-|---|---|
-| ![Cart](screenshots/06-cart.jpeg) | ![Dine-in Order Summary](screenshots/08-order-summary-dine-in.jpeg) |
-
-| Reservation Time Slots | Order Tracking |
-|---|---|
-| ![Reservation Time Slots](screenshots/09-reservation-time-slots.jpeg) | ![Order Tracking](screenshots/10-order-tracking.jpeg) |
-
-| Customer Profile | Reservation Contact & Empty State |
-|---|---|
-| ![Customer Profile Light](screenshots/11-customer-profile-light.jpeg) | ![Reservation Contact and Empty State](screenshots/12-reservation-contact-empty-list.jpeg) |
-
-| Dark Theme Profile | Dark Theme Search |
-|---|---|
-| ![Customer Profile Dark](screenshots/13-customer-profile-dark.jpeg) | ![Dark Theme Search](screenshots/15-search-mint-dark.jpeg) |
-
-### Manager Experience
-
-| Incoming Orders | Reservation Management |
-|---|---|
-| ![Manager Incoming Orders](screenshots/14-manager-incoming-orders.jpeg) | ![Manager Reservations](screenshots/16-manager-reservations.jpeg) |
-
-| Add Menu Item | Available Menu State |
-|---|---|
-| ![Manager Menu Management](screenshots/17-manager-menu-management-add-item.jpeg) | ![Manager Menu Available State](screenshots/18-manager-menu-available-state.jpeg) |
-
-| Availability Management | Manager Profile |
-|---|---|
-| ![Manager Availability Toggle](screenshots/19-manager-menu-availability-toggle.jpeg) | ![Manager Profile Dark](screenshots/20-manager-profile-dark.jpeg) |
-
-### Performance Evidence
-
-| Before Optimization | After Optimization |
-|---|---|
-| ![Console Before Optimization](screenshots/13-console-before.png) | ![Console After Optimization](screenshots/14-console-after.png) |
-
-## ✨ Key Features
-
-- Customer and Manager authentication with role-based navigation.
-- Twenty-item food and drinks menu using unique, optimized local images.
-- Category filtering, favourites, sorting, and unavailable-item states.
-- Search with an exact 400 ms debounce and the five most recent searches.
-- Render evidence plus `React.memo`, `useMemo`, and `useCallback` optimization.
-- Cart quantity management, item removal, and special instructions.
-- Promo codes: `URBAN10`, `DINE15`, and `FEAST20`.
-- Receipt-style order summary with service charge, tax, and discounts.
-- Dine-in table selection and Takeaway pickup-time selection.
-- Table reservations with party-size matching, disabled time slots, confirmation, and cancellation.
-- Live order tracking from Pending to Preparing, Ready, and Served.
-- Coherent Dark and Light themes across every screen.
-- Manager Dashboard for order, reservation, menu, price, and availability management.
-- AsyncStorage persistence for orders, reservations, and menu edits.
-
-## 👤 Demo Accounts
-
-| Role | Email | Password |
+| Question | Deliverable | Status |
 |---|---|---|
-| Customer | `customer@urbanfork.com` | `Urban123` |
-| Manager | `manager@urbanfork.com` | `Manager123` |
+| Q1 | SRS v2, API/database design, order-sequence and deployment diagrams | Complete; documents in `A2/` |
+| Q2 | Express server and `/api/health` | Implemented; health screenshots present |
+| Q3 | MongoDB Atlas integration, Mongoose models, seed data | Implemented; Atlas MenuItems screenshot present |
+| Q4 | Menu CRUD API | Implemented; success/failure screenshots present |
+| Q5 | Signup/login, bcrypt, JWT, protected manager routes | Implemented; 401/201 screenshots linked; 403 image needs token redaction |
+| Q6 | Backend-connected app, persisted auth, server menu, manager updates | Implemented; manager/customer price screenshots present |
+| Q7 | Orders, reservations, server validation, 10-second order polling | Implemented; demo video linked above |
 
-Signup can also create an in-memory Customer or Manager account for the current app session.
+## Tech stack
 
-## 🛠️ Technology Stack
-
-| Technology | Usage |
+| Layer | Technologies |
 |---|---|
-| React Native 0.86 | Cross-platform mobile interface |
-| Expo SDK 57 | Development, bundling, and Expo Go workflow |
-| JavaScript | Application language |
-| React Navigation | Bottom tabs, nested stacks, and role-based navigation |
-| Context API | Shared authentication, theme, menu, order, reservation, and cart state |
-| React Hooks | Screen state, effects, refs, memoization, and reusable logic |
-| `useReducer` | Immutable cart and order transitions |
-| AsyncStorage | Local persistence |
-| Ionicons | Consistent interface icons |
+| Frontend | React Native, Expo, JavaScript, AsyncStorage, React Navigation |
+| Backend | Node.js, Express |
+| Database | MongoDB Atlas, Mongoose |
+| Authentication | bcryptjs, jsonwebtoken / JWT |
+| Testing | Node.js test runner, Supertest, mongodb-memory-server, react-test-renderer; Thunder Client/Postman for manual API checks |
 
-No backend, Firebase, external database, or external app-data API is used. The application is frontend-only as required.
-
-## 📂 Project Structure
+## Project structure
 
 ```text
 restaurant-app-mvp/
-├── A1/
-│   ├── SRS.pdf
-│   ├── UML_Diagrams.pdf
-│   └── UML/
-├── assets/
-│   └── menu/
-├── screenshots/
-├── src/
-│   ├── components/
-│   ├── context/
-│   ├── data/
-│   ├── hooks/
-│   ├── navigation/
-│   ├── reducers/
-│   ├── screens/
-│   └── theme/
-├── App.js
-└── README.md
+|-- A1/                         # Original Assignment 1 SRS and UML
+|-- A2/                         # Assignment 2 documents and evidence images
+|   |-- diagrams/
+|   |-- verification/
+|   |-- SRS_v2.md
+|   |-- SRS_v2.pdf
+|   |-- TEST_RESULTS.md
+|   `-- restaurant-api.postman_collection.json
+|-- server/
+|   |-- config/
+|   |-- controllers/
+|   |-- data/
+|   |-- middleware/
+|   |-- models/
+|   |-- routes/
+|   |-- scripts/
+|   |-- tests/
+|   |-- server.js
+|   |-- seed.js
+|   `-- .env.example
+|-- src/
+|   |-- api/
+|   |-- components/
+|   |-- context/
+|   |-- data/
+|   |-- hooks/
+|   |-- navigation/
+|   |-- reducers/
+|   |-- screens/
+|   `-- theme/
+|-- assets/menu/
+|-- screenshots/                # Original A1 evidence; also a duplicate Q5 image
+|-- scripts/
+|-- tests/
+|-- App.js
+|-- package.json
+`-- README.md
 ```
 
-### Application Architecture
+## Backend setup
 
-```text
-SafeAreaProvider
-└── ThemeProvider
-    └── AuthProvider
-        └── RestaurantProvider
-            └── OrdersProvider
-                └── CartProvider
-                    └── AppNavigator
-                        ├── Customer tabs + nested stacks
-                        └── Manager tabs
-```
-
-The providers remain focused: authentication and theming are independent, restaurant state owns menu and reservations, order state owns tracking, and cart state owns the current basket. Persisted providers hydrate before protected navigation renders, preventing empty-state flashes and circular dependencies.
-
-## 🚀 Installation & Running
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/noorifatima310669/restaurant-app-mvp.git
-```
-
-### 2. Enter the project
-
-```bash
-cd restaurant-app-mvp
-```
-
-### 3. Install dependencies
-
-```bash
-npm install
-```
-
-### 4. Start Expo
-
-```bash
-npx expo start
-```
-
-On Windows PowerShell, use the command shims if npm or npx scripts are blocked:
+Install Node.js and npm, then use Windows PowerShell:
 
 ```powershell
+cd C:\Users\LENOVO\Desktop\MAD1\restaurant-app-mvp\server
+npm.cmd install
+if (!(Test-Path .env)) { Copy-Item .env.example .env }
+```
+
+Copy [server/.env.example](server/.env.example) to `server/.env` only if that private file does not already exist. Edit it locally with your own configuration. The example file leaves secrets blank; the values below are documentation placeholders only:
+
+```dotenv
+PORT=5000
+MONGO_URI=YOUR_MONGODB_CONNECTION_STRING
+JWT_SECRET=YOUR_32_PLUS_CHARACTER_SECRET
+```
+
+Use `restaurant_app` as the database name in your private Atlas connection string. Configure Atlas database-user permissions and network access for your laptop. Set a random JWT secret of at least 32 characters.
+
+**DO NOT commit server/.env.**
+
+```powershell
+npm.cmd run seed
+npm.cmd run dev
+```
+
+Seed creates missing demo accounts, 20 original menu items, and seven tables while preserving existing data, manager edits, and passwords.
+
+Expected successful startup with `PORT=5000`:
+
+```text
+MongoDB connected
+Urban Fork API listening on port 5000
+```
+
+Health endpoint: `GET http://localhost:5000/api/health`
+
+Expected response format:
+
+```json
+{
+  "status": "ok",
+  "time": "<ISO timestamp>"
+}
+```
+
+## Frontend setup and BASE_URL
+
+From the project root, in a separate terminal:
+
+```powershell
+cd C:\Users\LENOVO\Desktop\MAD1\restaurant-app-mvp
 npm.cmd install
 npx.cmd expo start
 ```
 
-### 5. Open on iPhone or Android
+`BASE_URL` is configured in [src/api/client.js](src/api/client.js). Replace the local development address for your environment, or use its optional `EXPO_PUBLIC_API_URL` override.
 
-Install Expo Go, keep the phone and development computer on the same network, and scan the Expo QR code. Use the same Expo account on the development machine and Expo Go if authentication is requested.
-
-## 🪝 Hooks Used
-
-| Hook / Technique | Screen or Feature | Purpose |
-|---|---|---|
-| `useState` | Login, Menu, Order Summary, Manager Dashboard | Controlled inputs, selections, loading, modal, and interface state |
-| `useEffect` | Menu, providers, order tracking | Timed loading, persistence hydration, storage updates, and interval cleanup |
-| `useRef` | MenuScreen | Search focus, FlatList scrolling, previous query, render count, and timer references |
-| `useContext` | All screens through custom context hooks | Accesses authentication, theme, cart, restaurant, and order state |
-| `useReducer` | CartContext, OrdersContext | Applies predictable immutable state transitions |
-| `useMemo` | MenuScreen, OrderSummaryScreen, providers | Derives filtered menu data, receipt totals, counts, and stable context values |
-| `useCallback` | MenuScreen and providers | Stabilizes add-to-cart, favourite, render, and provider action functions |
-| `React.memo` | MenuItemCard | Avoids card renders when its props are unchanged |
-| `useForm` | LoginScreen | Reusable controlled values, validation, submission, reset, and validity |
-| `useDebounce` | MenuScreen | Delays search propagation by exactly 400 ms |
-| `useReservation` | ReservationScreen | Owns availability, validation, contact, create, and cancellation logic |
-
-## 🧠 Context API vs Prop Drilling
-
-Context shares authentication, theme, cart, menu, reservation, and order state across deeply nested screens.<br>
-It avoids passing the same values through navigators and intermediate components that do not use them.<br>
-Focused custom hooks such as `useAuth` and `useTheme` keep consumption clear and guarded.<br>
-Direct props remain appropriate for local parent-child data, such as a card action callback.<br>
-Provider values are memoized and separated by domain to limit unnecessary updates.<br>
-A drawback is that consumers can re-render whenever their Context value changes.
-
-## 🛒 useReducer vs useState
-
-`useReducer` suits the cart because eight named actions update related fields under explicit immutable rules.<br>
-It centralizes quantity, note, removal, clearing, and promotion transitions in one pure function.<br>
-This makes complex transitions easier to inspect and test than scattered setter calls.<br>
-`useState` is enough for a single independent value such as search text, selected category, or modal visibility.
-
-## 🧪 Cart Reducer Test Cases
-
-| Action | Initial State | Expected State |
-|---|---|---|
-| `ADD_ITEM` new | Empty items | Item added with `quantity: 1` and an empty note |
-| `ADD_ITEM` existing | Matching item at quantity 1 | Matching item becomes quantity 2 without a duplicate row |
-| `INCREMENT` | Matching item at quantity 2 | Matching item becomes quantity 3 |
-| `DECREMENT` | Matching item at quantity 2 | Matching item becomes quantity 1 |
-| `DECREMENT` to zero | Matching item at quantity 1 | Matching item is removed |
-| `REMOVE_ITEM` | Multiple items | Only the matching item is removed |
-| `UPDATE_NOTE` | Item with an empty note | Only the matching item receives the instruction |
-| `APPLY_PROMO` | No promotion | `promoCode` and `discountPercent` are set |
-| `REMOVE_PROMO` | `DINE15` at 15% | Promotion resets to `null` and 0 |
-| `CLEAR_CART` | Items and promotion present | Exact initial cart state is restored |
-
-## 🔄 useEffect Dependency Note
-
-If the original Question 4 filtering effect used an empty dependency array, React would run it only after the first render. Later changes to the selected category, search value, sorting choice, favourites, or manager-edited menu would not trigger that effect, so the displayed list would become stale. Adding every dependency could keep it synchronized, but it would still duplicate data that React can derive from existing state. The final implementation therefore replaces that effect and separate `filteredItems` state with one `useMemo` pipeline. Its dependency list names every source value, making updates predictable while avoiding extra state-setting renders and inconsistent menu copies.
-
-## ⚡ Performance Optimization
-
-`MenuItemCard` uses `React.memo` so unchanged cards can skip renders. MenuScreen passes stable add-to-cart and favourite handlers through `useCallback`, and its `renderItem` callback is memoized as well. Category filtering, debounced search, sorting, and favourites are combined in one `useMemo` pipeline instead of duplicated state. Order Summary also memoizes receipt calculations. These tools are not used for trivial values or as substitutes for correct dependencies; unnecessary memoization can add complexity and cost more than recalculation. The genuine console evidence is shown in [Before Optimization](screenshots/13-console-before.png) and [After Optimization](screenshots/14-console-after.png).
-
-## 💾 Local Persistence
-
-AsyncStorage loads saved data before protected navigation appears and safely handles invalid stored JSON.
-
-| Storage Key | Persisted Data |
+| Environment | Example API base URL |
 |---|---|
-| `@urbanfork_orders` | Orders and their latest tracking status |
-| `@urbanfork_reservations` | Reservation requests and manager decisions |
-| `@urbanfork_menu` | Added items, price changes, and availability edits |
+| Physical phone | `http://YOUR_LAPTOP_IP:5000/api` |
+| Android emulator | `http://10.0.2.2:5000/api` |
 
-Authentication and the active cart remain session state. Menu images are bundled locally through explicit static `require(...)` mappings.
+For physical phone testing, the phone and laptop must be on the same Wi-Fi. Find your laptop's IPv4 address using `ipconfig`, allow Node.js through the firewall on the trusted network, and restart Expo after changing the address. Open the app in Expo Go. The laptop IP is environment-specific.
 
-## 👥 User Roles
+## Demo / seeded assignment credentials
 
-### Customer
+These are **DEMO / SEEDED ASSIGNMENT CREDENTIALS**, verified against `server/data/a1-seed.json`.
 
-Customers can sign in or create an account, browse and search the menu, sort and favourite dishes, manage a cart, apply promotions, choose Dine-in or Takeaway, place and track orders, reserve tables, change themes, and sign out.
+| Role | Email | Demo password |
+|---|---|---|
+| Customer | `customer@urbanfork.com` | `Urban123` |
+| Manager | `manager@urbanfork.com` | `Manager123` |
 
-### Manager
+Public signup creates customer accounts only; the seed provisions the manager. Login returns a one-day JWT and public user data. AsyncStorage persists the session; logout clears it. Seeding an existing database does not reset changed passwords.
 
-Managers receive a dedicated dashboard for incoming orders, reservation decisions, menu-item creation, price editing, and availability control. Manager navigation is role-gated and excludes customer-only tabs.
+## API endpoints
 
-## 🎬 Complete Demo Flow
+Protected requests use `Authorization: Bearer <YOUR_JWT_TOKEN>`. Customer and manager access is enforced by server middleware; customer `/my` routes return only that customer's records.
 
-**Customer**
+| Method | Endpoint | Access | Purpose |
+|---|---|---|---|
+| GET | `/api/health` | Public | Server health and ISO timestamp |
+| POST | `/api/auth/register` | Public | Register a customer |
+| POST | `/api/auth/login` | Public | Authenticate and return session |
+| GET | `/api/auth/me` | Authenticated customer or manager | Current public user |
+| GET | `/api/menu` | Public | List menu; optional category/search filters |
+| GET | `/api/menu/:id` | Public | Read one menu item |
+| POST | `/api/menu` | Manager JWT | Create menu item |
+| PUT | `/api/menu/:id` | Manager JWT | Update menu fields, price, or availability |
+| DELETE | `/api/menu/:id` | Manager JWT | Delete menu item |
+| GET | `/api/tables` | Public | List tables |
+| GET | `/api/tables/availability` | Public | Available tables for date, time, and party size |
+| POST | `/api/orders` | Customer JWT | Place an order with server-calculated totals |
+| GET | `/api/orders/my` | Customer JWT | List own orders |
+| GET | `/api/orders` | Manager JWT | List all orders |
+| PATCH | `/api/orders/:id/status` | Manager JWT | Apply a permitted status transition |
+| POST | `/api/reservations` | Customer JWT | Create a validated reservation |
+| GET | `/api/reservations/my` | Customer JWT | List own reservations |
+| GET | `/api/reservations` | Manager JWT | List all reservations |
+| PATCH | `/api/reservations/:id` | Manager JWT | Accept or decline a pending reservation |
+| PATCH | `/api/reservations/:id/cancel` | Customer JWT; owner only | Cancel an active own reservation |
 
-Login/Signup → Browse Menu → Search/Sort → Add to Cart → Apply Promo → Order Summary → Dine-in/Takeaway → Place Order → Track Order → Reserve Table → Profile/Theme
+### Q4 / Q5 API evidence
 
-**Manager**
+These are expected outcomes from the implemented routes, assuming the server/database are available and create requests have valid required fields.
 
-Login → Dashboard → Incoming Orders → Reservation Management → Menu Management → Availability Management → Profile/Theme
+| Question | Request | Expected status |
+|---|---|---|
+| Q4 | `GET /api/menu` | 200 |
+| Q4 | `GET /api/menu/not-a-valid-id` | 400 |
+| Q5 | `POST /api/menu` without a token | 401 |
+| Q5 | `POST /api/menu` with a customer token | 403 |
+| Q5 | `POST /api/menu` with a manager token and valid body | 201 |
 
----
+A valid but nonexistent menu ObjectId returns 404. Use Thunder Client or import the [Postman collection](A2/restaurant-api.postman_collection.json). Keep runtime tokens private.
 
-**Urban Fork – Restaurant App MVP**<br>
-**Fall 2026**<br>
-Built with React Native & Expo.
+## Database and shared behavior
+
+The assignment database is **`restaurant_app`**, shown in the Atlas evidence. The models explicitly use these collection names:
+
+| Collection | Data |
+|---|---|
+| Users | Customer/manager accounts and bcrypt password hashes |
+| MenuItems | Shared menu, prices, categories, availability |
+| Tables | Table names, seating capacities, areas |
+| Reservations | Customer bookings and manager decisions |
+| Orders | Items, server-calculated receipt totals, order status |
+
+Menu data is shared through MongoDB. Manager price/availability changes become visible to customers when the menu is fetched again or pulled to refresh. Orders and reservations are stored server-side.
+
+The server validates quantities, menu availability, order type, booking date/time, capacity, and ownership. It calculates order totals from current database prices. A unique active reservation index prevents simultaneous double-booking. JWT protects authenticated and manager operations.
+
+Customer Orders fetches immediately and polls every **10 seconds**, with interval cleanup. Manager Dashboard also refreshes every 10 seconds. Order transitions are Pending → Preparing → Ready → Served, with cancellation allowed from Pending.
+
+## Assignment Evidence
+
+Existing Assignment 2 files are in `A2/`; there is no `A2/screenshots/` directory. Links below use their actual names and extensions.
+
+| Question | Existing evidence |
+|---|---|
+| Q2 | [Thunder Client health and server startup](A2/q2-health-thunder.png) |
+| Q2 | [Browser health response](A2/q2-health-phone.png) — despite its filename, this is a desktop browser capture |
+| Q3 | [Atlas restaurant_app / MenuItems](A2/q3-mongodb-menuitems.png) |
+| Q4 | [Menu success: 200](A2/q4-menu-success.png) · [Invalid ID: 400](A2/q4-menu-failure.png) |
+| Q5 | [No token: 401](A2/q5-no-token-401.png) · [Manager create: 201](A2/q5-manager-201.png) |
+| Q5 | `A2/q5-customer-403.png` exists but displays a Bearer JWT; omitted from links until redacted |
+| Q6 | [Manager new price](A2/q6-manager-new-price.jpeg) · [Customer new price](A2/q6-customer-new-price.jpeg) |
+
+The Q6 captures both show Truffle Parmesan Fries at PKR 1,000. All ten named evidence captures exist, with Q6 using `.jpeg` instead of `.png`. A duplicate customer-403 file also exists at `screenshots/q5-customer-403.png`; neither 403 file is linked here.
+
+Screenshot: Add a genuine phone health capture here; the current `q2-health-phone.png` is desktop evidence.
+
+Screenshot: Add a redacted customer-403 capture here before linking it. Existing screenshot files are unchanged.
+
+## Testing and verification
+
+According to [A2/TEST_RESULTS.md](A2/TEST_RESULTS.md), dated 11 October 2026, **110 automated tests passed**: 81 backend and 29 frontend, with zero failures. These are previously recorded results, not a new test run for this README update.
+
+| Recorded check | Result |
+|---|---|
+| Backend integration/startup tests | 81 passed using disposable MongoDB |
+| Frontend tests | 29 passed with mocked transport/native primitives |
+| ESLint | Passed |
+| JavaScript syntax/import checks | Passed; 59 files |
+| Expo dependency check | Passed |
+| Expo Doctor | 21/21 checks passed |
+| Web export | Passed; `dist/web` |
+| Android export | Passed; Hermes bundle in `dist/android` |
+| Expo/server startup smoke checks | Passed |
+
+Run the existing checks from the project root:
+
+```powershell
+npm.cmd run lint
+npm.cmd run check:syntax
+npm.cmd run test:frontend
+npm.cmd test --prefix server
+npm.cmd run check
+npm.cmd run build:web
+npm.cmd run build:android
+```
+
+[Raw verification outputs](A2/verification/results.json) support the report. Automated verification used disposable MongoDB and mocked frontend I/O; an Android export is bundle verification, not an APK installation. The report's manual-evidence notes predate the currently present screenshots and supplied video link. Evidence availability is recorded above; no new live Atlas/device verification is claimed.
+
+`A2/IMPLEMENTATION_REPORT.md` is absent, so no implementation-report link or claims are included.
+
+## SRS and documents
+
+- [Assignment 2 SRS v2 (PDF)](A2/SRS_v2.pdf) · [Markdown source](A2/SRS_v2.md)
+- [Test results](A2/TEST_RESULTS.md)
+- [Postman API collection](A2/restaurant-api.postman_collection.json)
+- [Combined diagrams (PDF)](A2/diagrams/A2_Diagrams.pdf)
+- [Order sequence (SVG)](A2/diagrams/order-sequence.svg) · [Mermaid source](A2/diagrams/order-sequence.mmd)
+- [Deployment (SVG)](A2/diagrams/deployment.svg) · [Mermaid source](A2/diagrams/deployment.mmd)
+
+## Security notes
+
+- `server/.env` must never be pushed; it is ignored by Git.
+- Never commit a MongoDB URI/password, `JWT_SECRET`, or real JWT tokens.
+- `.env.example` contains blank secret fields for local configuration; README values are placeholders only.
+- Passwords stored in MongoDB are bcrypt hashes; API responses exclude password fields.
+- Protected endpoints use Bearer JWT tokens and server-side role/ownership checks.
+- Keep secrets out of frontend variables, exported Postman collections, screenshots, and videos. Redact tokens before publishing evidence.
+
+## Quick Start
+
+Complete the private environment setup and configure `BASE_URL` first.
+
+**Terminal 1 — Backend**
+
+```powershell
+cd C:\Users\LENOVO\Desktop\MAD1\restaurant-app-mvp
+cd server
+npm.cmd install
+npm.cmd run seed
+npm.cmd run dev
+```
+
+**Terminal 2 — Expo**
+
+```powershell
+cd C:\Users\LENOVO\Desktop\MAD1\restaurant-app-mvp
+npm.cmd install
+npx.cmd expo start
+```
+
+1. Keep the backend running.
+2. Open the app in Expo Go.
+3. Log in using the demo customer or manager account.
+
+## Assignment 1 — historical frontend work
+
+Assignment 1 is the original frontend baseline: menu browsing/search, cart and receipts, reservations, role-based navigation, and themes. Assignment 2 extends it with server authentication and shared database storage.
+
+- [Original SRS](A1/SRS.pdf)
+- [Original UML diagrams](A1/UML_Diagrams.pdf)
+- [Original screenshots](screenshots/) — numbered A1 captures remain historical evidence
+- [Assignment 1 demo video](https://drive.google.com/file/d/19JWpzNvg2EJ85vGqjBb7cAhwE_Q8F0P9/view?usp=drive_link)
+
+Assignment 1's frontend-only authentication/storage descriptions do not describe the current Assignment 2 server-backed behavior.

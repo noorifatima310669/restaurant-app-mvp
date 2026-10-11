@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
-  FlatList, SafeAreaView, StyleSheet, Text, View,
+  FlatList, RefreshControl, SafeAreaView, StyleSheet, Text, View,
 } from 'react-native';
+import { useApi } from '../hooks/useApi';
 import EmptyState from '../components/EmptyState';
 import OrderStatusStep from '../components/OrderStatusStep';
 import { useAuth } from '../context/AuthContext';
@@ -85,7 +86,15 @@ function OrderCard({ order, now, colors }) {
 export default function OrdersScreen({ navigation }) {
   const { colors } = useTheme();
   const { user } = useAuth();
-  const { orders, now } = useOrders();
+  const { orders, refreshOrders } = useOrders();
+  const { loading, error, refetch } = useApi(refreshOrders, { enabled: false });
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const fetchOrders = () => { setNow(Date.now()); refetch(); };
+    fetchOrders();
+    const interval = setInterval(fetchOrders, 10000);
+    return () => clearInterval(interval);
+  }, [refetch]);
   const customerOrders = useMemo(
     () => orders.filter((order) => order.customer?.id === user.id || order.customer?.email === user.email),
     [orders, user.email, user.id],
@@ -95,10 +104,12 @@ export default function OrdersScreen({ navigation }) {
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
       <FlatList
         data={customerOrders}
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={refetch} tintColor={colors.primary} />}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <OrderCard order={item} now={now} colors={colors} />}
         ListHeaderComponent={(
           <View style={styles.header}>
+            {error ? <EmptyState title="Orders unavailable" message={error} actionLabel="Retry" onAction={refetch} /> : null}
             <Text style={[styles.eyebrow, { color: colors.accent }]}>LIVE FROM THE KITCHEN</Text>
             <Text style={[styles.title, { color: colors.text }]}>Track every plate.</Text>
             <Text style={[styles.subtitle, { color: colors.textSecondary }]}>Order progress updates automatically while the app is open.</Text>

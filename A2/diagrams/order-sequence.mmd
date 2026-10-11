@@ -1,0 +1,22 @@
+sequenceDiagram
+    actor Customer
+    participant App as Existing Expo App
+    participant API as Express Server
+    participant DB as MongoDB
+    Customer->>App: Confirm order
+    App->>API: POST /api/orders (Bearer JWT, IDs, quantities)
+    API->>API: Authenticate customer
+    API->>DB: Load MenuItems and table
+    DB-->>API: Current prices and availability
+    API->>API: Validate and calculate authoritative total
+    API->>DB: Insert Pending order with price snapshots
+    DB-->>API: Saved order
+    API-->>App: 201 order and server total
+    App->>App: Clear cart only after success
+    App-->>Customer: Confirmation
+    loop Every exactly 10 seconds
+        App->>API: GET /api/orders/my
+        API->>DB: Query own orders
+        DB-->>API: Latest manager-controlled status
+        API-->>App: 200 order list
+    end

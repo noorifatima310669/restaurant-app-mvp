@@ -6,3 +6,10 @@ npm-debug.log*
 .claude/
 AGENTS.md
 CLAUDE.md
+
+.env
+.env.*
+!.env.example
+coverage/
+.tools/
+*.log

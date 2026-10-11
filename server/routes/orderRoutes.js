@@ -1,0 +1,10 @@
+const router = require('express').Router();
+const controller = require('../controllers/orderController');
+const { protect, managerOnly, customerOnly } = require('../middleware/auth');
+const { validId } = require('../middleware/errors');
+router.use(protect);
+router.post('/', customerOnly, controller.create);
+router.get('/my', customerOnly, controller.my);
+router.get('/', managerOnly, controller.list);
+router.patch('/:id/status', managerOnly, validId, controller.status);
+module.exports = router;

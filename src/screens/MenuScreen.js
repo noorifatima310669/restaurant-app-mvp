@@ -13,17 +13,17 @@ import MenuItemCard from '../components/MenuItemCard';
 import { useCart } from '../context/CartContext';
 import { useRestaurant } from '../context/RestaurantContext';
 import { useTheme } from '../context/ThemeContext';
-import { categories } from '../data/menu';
+import { categories } from '../data/menuImages';
+import { useApi } from '../hooks/useApi';
 import { useDebounce } from '../hooks/useDebounce';
 
 const SORT_OPTIONS = ['Featured', 'Price: Low to High', 'Price: High to Low', 'Name: A to Z', 'Favourites'];
 
 export default function MenuScreen({ navigation }) {
   const { colors } = useTheme();
-  const { menuItems } = useRestaurant();
+  const { menuItems, refreshMenu } = useRestaurant();
+  const { loading: isLoading, error, refetch } = useApi(refreshMenu);
   const { dispatch } = useCart();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [category, setCategory] = useState('All');
   const [query, setQuery] = useState('');
@@ -36,39 +36,10 @@ export default function MenuScreen({ navigation }) {
   const listRef = useRef(null);
   const previousQueryRef = useRef('');
   const renderCount = useRef(0);
-  const retryTimerRef = useRef(null);
-  const refreshTimerRef = useRef(null);
   renderCount.current += 1;
   // Changing a ref does not trigger a re-render; changing state does.
 
   const debouncedQuery = useDebounce(query, 400);
-
-  useEffect(() => {
-    let timer;
-    let active = true;
-    const menuPromise = new Promise((resolve) => {
-      timer = setTimeout(() => resolve(true), 1500);
-    });
-    menuPromise
-      .then(() => {
-        if (active) setIsLoading(false);
-      })
-      .catch(() => {
-        if (active) {
-          setError('We could not prepare the menu. Please try again.');
-          setIsLoading(false);
-        }
-      });
-    return () => {
-      active = false;
-      clearTimeout(timer);
-    };
-  }, []);
-
-  useEffect(() => () => {
-    clearTimeout(retryTimerRef.current);
-    clearTimeout(refreshTimerRef.current);
-  }, []);
 
   useEffect(() => {
     const cleaned = debouncedQuery.trim();
@@ -119,18 +90,11 @@ export default function MenuScreen({ navigation }) {
     searchRef.current?.focus();
   }, []);
 
-  const retry = useCallback(() => {
-    clearTimeout(retryTimerRef.current);
-    setError(null);
-    setIsLoading(true);
-    retryTimerRef.current = setTimeout(() => setIsLoading(false), 1500);
-  }, []);
-
-  const refresh = useCallback(() => {
-    clearTimeout(refreshTimerRef.current);
+  const retry = refetch;
+  const refresh = useCallback(async () => {
     setIsRefreshing(true);
-    refreshTimerRef.current = setTimeout(() => setIsRefreshing(false), 700);
-  }, []);
+    try { await refetch(); } finally { setIsRefreshing(false); }
+  }, [refetch]);
 
   const onScroll = useCallback((event) => {
     const shouldShow = event.nativeEvent.contentOffset.y > 300;
@@ -235,7 +199,7 @@ export default function MenuScreen({ navigation }) {
     </View>
   );
 
-  if (isLoading) return <LoadingScreen message="Curating today's menu…" />;
+  if (isLoading && !menuItems.length) return <LoadingScreen message="Curating today's menu…" />;
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>

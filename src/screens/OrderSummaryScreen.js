@@ -4,11 +4,11 @@ import {
   Alert, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View,
 } from 'react-native';
 import EmptyState from '../components/EmptyState';
-import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useOrders } from '../context/OrdersContext';
 import { useTheme } from '../context/ThemeContext';
-import { tables } from '../data/tables';
+import { useRestaurant } from '../context/RestaurantContext';
+import { useApi } from '../hooks/useApi';
 
 export const SERVICE_CHARGE_RATE = 0.05;
 export const SALES_TAX_RATE = 0.15;
@@ -27,9 +27,11 @@ function MoneyRow({ label, value, colors, strong = false, negative = false }) {
 
 export default function OrderSummaryScreen({ navigation }) {
   const { colors } = useTheme();
-  const { user } = useAuth();
   const { state, dispatch } = useCart();
   const { createOrder } = useOrders();
+  const { tables, refreshTables } = useRestaurant();
+  const { error: tableError, refetch: retryTables } = useApi(refreshTables);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderType, setOrderType] = useState('Dine-in');
   const [selectedTableId, setSelectedTableId] = useState('');
   const [pickupTime, setPickupTime] = useState('');
@@ -54,7 +56,8 @@ export default function OrderSummaryScreen({ navigation }) {
     );
   }
 
-  const placeOrder = () => {
+  const placeOrder = async () => {
+    if (isSubmitting) return;
     if (orderType === 'Dine-in' && !selectedTableId) {
       Alert.alert('Choose a table', 'Select where you would like to dine before placing the order.');
       return;
@@ -64,25 +67,24 @@ export default function OrderSummaryScreen({ navigation }) {
       return;
     }
     const table = tables.find((entry) => entry.id === selectedTableId);
-    const order = createOrder({
-      items: state.items,
-      total: Math.round(totals.grandTotal),
-      type: orderType,
-      ...(orderType === 'Dine-in' ? { tableId: table.id, tableName: table.name } : { pickupTime }),
-      customer: { id: user.id, name: user.name, email: user.email },
-      promoCode: state.promoCode,
-    });
-    dispatch({ type: 'CLEAR_CART' });
-    Alert.alert(
-      'Order placed',
-      `${order.id} is confirmed. Follow its progress from Pending to Served in real time.`,
-      [{ text: 'Track order', onPress: () => navigation.getParent()?.navigate('Orders') }],
-    );
+    setIsSubmitting(true);
+    try {
+      const order = await createOrder({
+        items: state.items, type: orderType,
+        ...(orderType === 'Dine-in' ? { tableId: table.id } : { pickupTime }),
+        promoCode: state.promoCode,
+      });
+      dispatch({ type: 'CLEAR_CART' });
+      Alert.alert('Order placed', `${order.id} is confirmed. Server total: PKR ${order.total.toLocaleString()}.`,
+        [{ text: 'Track order', onPress: () => navigation.getParent()?.navigate('Orders') }]);
+    } catch (error) { Alert.alert('Unable to place order', error.message); }
+    finally { setIsSubmitting(false); }
   };
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+        {tableError ? <EmptyState title="Tables unavailable" message={tableError} actionLabel="Retry" onAction={retryTables} /> : null}
         <View style={styles.heading}>
           <Text style={[styles.eyebrow, { color: colors.accent }]}>FINAL CHECK</Text>
           <Text style={[styles.title, { color: colors.text }]}>Everything looks delicious.</Text>
@@ -181,7 +183,7 @@ export default function OrderSummaryScreen({ navigation }) {
           <MoneyRow label="Grand total" value={totals.grandTotal} strong colors={colors} />
         </View>
 
-        <Pressable onPress={placeOrder} style={({ pressed }) => [styles.placeButton, { backgroundColor: colors.primary }, pressed && styles.pressed]}>
+        <Pressable disabled={isSubmitting} onPress={placeOrder} style={({ pressed }) => [styles.placeButton, { backgroundColor: colors.primary }, pressed && styles.pressed]}>
           <Text style={[styles.placeText, { color: colors.background }]}>Place order · PKR {Math.round(totals.grandTotal).toLocaleString()}</Text>
           <Ionicons name="arrow-forward-circle" size={22} color={colors.background} />
         </Pressable>

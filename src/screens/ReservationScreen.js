@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo, useState } from 'react';
 import {
-  Alert, KeyboardAvoidingView, Modal, Platform, Pressable, SafeAreaView,
+  Alert, RefreshControl, KeyboardAvoidingView, Modal, Platform, Pressable, SafeAreaView,
   ScrollView, StyleSheet, Text, TextInput, View,
 } from 'react-native';
 import EmptyState from '../components/EmptyState';
@@ -36,12 +36,12 @@ export default function ReservationScreen() {
     if (Object.keys(errors).length === 0) setConfirmationVisible(true);
   };
 
-  const confirmReservation = () => {
-    const result = reservation.createReservation();
+  const confirmReservation = async () => {
+    const result = await reservation.createReservation();
     if (result.ok) {
       setConfirmationVisible(false);
       Alert.alert('Table requested', `${result.reservation.id} has been sent to the restaurant for confirmation.`);
-    }
+    } else if (result.errors.server) { Alert.alert('Unable to reserve', result.errors.server); }
   };
 
   const confirmCancellation = (item) => {
@@ -50,7 +50,7 @@ export default function ReservationScreen() {
       `${item.date} at ${item.time} · ${item.tableName}`,
       [
         { text: 'Keep booking', style: 'cancel' },
-        { text: 'Cancel reservation', style: 'destructive', onPress: () => reservation.cancelReservation(item.id) },
+        { text: 'Cancel reservation', style: 'destructive', onPress: () => reservation.cancelReservation(item.id).then(() => reservation.refetch()).catch(error => Alert.alert('Unable to cancel', error.message)) },
       ],
     );
   };
@@ -60,7 +60,9 @@ export default function ReservationScreen() {
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
       <KeyboardAvoidingView style={styles.safe} behavior={Platform.OS === 'ios' ? 'padding' : undefined} keyboardVerticalOffset={88}>
-        <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}
+          refreshControl={<RefreshControl refreshing={reservation.loading} onRefresh={reservation.refetch} tintColor={colors.primary} />}>
+          {reservation.error ? <EmptyState title="Reservations unavailable" message={reservation.error} actionLabel="Retry" onAction={reservation.refetch} /> : null}
           <View style={[styles.hero, { backgroundColor: colors.primary }]}>
             <Ionicons name="calendar-outline" size={27} color={colors.accent} />
             <Text style={[styles.heroTitle, { color: colors.background }]}>Your table, your time.</Text>
@@ -281,7 +283,7 @@ export default function ReservationScreen() {
               <Pressable onPress={() => setConfirmationVisible(false)} style={[styles.modalSecondary, { borderColor: colors.border }]}>
                 <Text style={[styles.modalSecondaryText, { color: colors.text }]}>Edit</Text>
               </Pressable>
-              <Pressable onPress={confirmReservation} style={[styles.modalPrimary, { backgroundColor: colors.primary }]}>
+              <Pressable disabled={reservation.isSubmitting} onPress={confirmReservation} style={[styles.modalPrimary, { backgroundColor: colors.primary }]}>
                 <Text style={[styles.modalPrimaryText, { color: colors.background }]}>Confirm</Text>
               </Pressable>
             </View>

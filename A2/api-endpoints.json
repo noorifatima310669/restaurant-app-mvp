@@ -1,0 +1,142 @@
+[
+  [
+    "GET",
+    "/health",
+    "Public",
+    "200",
+    "status/time"
+  ],
+  [
+    "POST",
+    "/auth/register",
+    "Public",
+    "201/400/409",
+    "name,email,password; public customer only; token/user"
+  ],
+  [
+    "POST",
+    "/auth/login",
+    "Public",
+    "200/400/401",
+    "email,password; JWT/user"
+  ],
+  [
+    "GET",
+    "/auth/me",
+    "Authenticated",
+    "200/401",
+    "public user"
+  ],
+  [
+    "GET",
+    "/menu",
+    "Public",
+    "200/400",
+    "optional category/search; array"
+  ],
+  [
+    "GET",
+    "/menu/:id",
+    "Public",
+    "200/400/404",
+    "menu record"
+  ],
+  [
+    "POST",
+    "/menu",
+    "Manager",
+    "201/400/401/403",
+    "name,description,price,category; optional flags/imageKey"
+  ],
+  [
+    "PUT",
+    "/menu/:id",
+    "Manager",
+    "200/400/404",
+    "allowed fields with validators"
+  ],
+  [
+    "DELETE",
+    "/menu/:id",
+    "Manager",
+    "200/400/404",
+    "deletion message"
+  ],
+  [
+    "GET",
+    "/tables",
+    "Public",
+    "200",
+    "database table records"
+  ],
+  [
+    "GET",
+    "/tables/availability",
+    "Public",
+    "200/400",
+    "date,time,partySize; unoccupied tables"
+  ],
+  [
+    "POST",
+    "/orders",
+    "Customer",
+    "201/400",
+    "items[{menuItem,quantity,note}],type,tableId or pickupTime,promoCode"
+  ],
+  [
+    "GET",
+    "/orders/my",
+    "Customer",
+    "200",
+    "own orders only"
+  ],
+  [
+    "GET",
+    "/orders",
+    "Manager",
+    "200",
+    "all orders"
+  ],
+  [
+    "PATCH",
+    "/orders/:id/status",
+    "Manager",
+    "200/400/404/409",
+    "status; legal transition and atomic update"
+  ],
+  [
+    "POST",
+    "/reservations",
+    "Customer",
+    "201/400/409",
+    "tableId,date,time,partySize,contactName,phone"
+  ],
+  [
+    "GET",
+    "/reservations/my",
+    "Customer",
+    "200",
+    "own reservations"
+  ],
+  [
+    "GET",
+    "/reservations",
+    "Manager",
+    "200",
+    "all reservations"
+  ],
+  [
+    "PATCH",
+    "/reservations/:id",
+    "Manager",
+    "200/400/404/409",
+    "Accepted/Declined; pending only"
+  ],
+  [
+    "PATCH",
+    "/reservations/:id/cancel",
+    "Customer owner",
+    "200/400/404/409",
+    "cancel active own booking"
+  ]
+]

@@ -1,0 +1,8 @@
+flowchart LR
+    Phone[Customer / Manager Phone<br/>Existing React Native Expo App]
+    Laptop[Laptop on same Wi-Fi<br/>Express :5000 listening 0.0.0.0]
+    Atlas[(MongoDB Atlas<br/>Users / MenuItems / Tables / Reservations / Orders)]
+    Phone -->|HTTP JSON + Bearer JWT<br/>LAN IP from src/api/client.js| Laptop
+    Laptop -->|Mongoose / TLS<br/>server-only MONGO_URI| Atlas
+    Atlas -->|Shared records| Laptop
+    Laptop -->|JSON responses / 10-second polling| Phone

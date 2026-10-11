@@ -1,0 +1,10 @@
+const router = require('express').Router();
+const controller = require('../controllers/menuController');
+const { protect, managerOnly } = require('../middleware/auth');
+const { validId } = require('../middleware/errors');
+router.get('/', controller.list);
+router.get('/:id', validId, controller.get);
+router.post('/', protect, managerOnly, controller.create);
+router.put('/:id', protect, managerOnly, validId, controller.update);
+router.delete('/:id', protect, managerOnly, validId, controller.remove);
+module.exports = router;

@@ -14,7 +14,7 @@ export default function ProfileScreen() {
   const confirmLogout = () => {
     Alert.alert('Sign out of Urban Fork?', 'You can sign back in at any time.', [
       { text: 'Stay signed in', style: 'cancel' },
-      { text: 'Sign out', style: 'destructive', onPress: logout },
+      { text: 'Sign out', style: 'destructive', onPress: () => logout().catch(error => Alert.alert('Unable to sign out', error.message)) },
     ]);
   };
 

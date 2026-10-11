@@ -1,0 +1,57 @@
+
+> urban-fork@1.0.0 test:frontend
+> node --test tests/*.test.cjs
+
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 API sends JSON and Bearer token (2.9066ms)
+✔ Q6 public auth does not send previous token (0.4736ms)
+✔ Q6 API throws server message and HTTP status (0.7292ms)
+✔ Q6 API safely rejects malformed responses (0.4693ms)
+✔ Q6 API accepts empty successful response (0.7744ms)
+✔ Q6 API reports network failure clearly (0.471ms)
+✔ Q6 API handles cancellation (0.4522ms)
+✔ Q6 session store persists user and token (0.3296ms)
+✔ Q6 session store clears persisted credentials (0.2895ms)
+✔ Q6 malformed stored session is discarded (0.2994ms)
+✔ Q6 missing or invalid stored user is discarded (0.1856ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 AuthContext login calls API, persists and exposes normalized user (39.5675ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 AuthContext restores session on app startup (3.8358ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 expired stored session is cleared (2.6135ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 logout clears memory, Bearer token and storage (3.4475ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 signup always sends customer registration fields (3.184ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 failed authentication does not persist a session (3.1375ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 menu context loads server records, ignoring old AsyncStorage menu (3.0493ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 manager menu mutation refetches server data (2.7611ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 useApi exposes error, retry and recovered data (2.2406ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q6 useApi ignores stale overlapping responses (1.8932ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q7 createOrder posts item ids, not client prices or total (4.4419ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q7 failed order leaves orders unchanged (2.9816ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q7 OrdersScreen fetches immediately, polls exactly 10000ms and cleans up (6.3355ms)
+✔ A1 cart reducer preserves quantities, notes and promos (0.5773ms)
+✔ A1 order reducer still loads authoritative server results (0.2078ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q7 existing checkout UI retains cart on server failure (98.3614ms)
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+✔ Q7 existing checkout UI clears cart only after server success (15.1192ms)
+✔ Q7 useReservation preserves frontend validation and posts server booking (37.4556ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1030.6643

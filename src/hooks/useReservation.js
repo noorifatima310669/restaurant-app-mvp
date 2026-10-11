@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { reservationTimeSlots, tables } from '../data/tables';
+import { reservationTimeSlots } from '../data/tables';
+import { api } from '../api/client';
+import { normalizeTable } from '../api/normalize';
+import { useApi } from './useApi';
 import { useAuth } from '../context/AuthContext';
 import { useRestaurant } from '../context/RestaurantContext';
 
@@ -13,7 +16,7 @@ function localDateString(date = new Date()) {
 export function useReservation() {
   const { user } = useAuth();
   const {
-    reservations, addReservation, cancelReservation: cancelStoredReservation,
+    tables, reservations, refreshTables, refreshReservations, addReservation, cancelReservation: cancelStoredReservation,
   } = useRestaurant();
   const [selectedDate, setSelectedDateState] = useState(localDateString());
   const [selectedTime, setSelectedTimeState] = useState('');
@@ -22,6 +25,22 @@ export function useReservation() {
   const [contactName, setContactNameState] = useState(user?.name || '');
   const [phone, setPhoneState] = useState('');
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const loadReservations = useCallback(async () => {
+    const [, , slots] = await Promise.all([
+      refreshTables(), refreshReservations(),
+      Promise.all(reservationTimeSlots.map(async time => {
+        const query = `?date=${selectedDate}&time=${time}&partySize=${partySize}`;
+        return [time, (await api.request(`/tables/availability${query}`)).map(normalizeTable)];
+      })),
+    ]);
+    return { date: selectedDate, partySize, availableByTime: Object.fromEntries(slots) };
+  }, [partySize, refreshReservations, refreshTables, selectedDate]);
+  const { data, loading, error, refetch } = useApi(loadReservations);
+  useEffect(() => {
+    const interval = setInterval(refetch, 10000);
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   const clearError = useCallback((field) => {
     setErrors((current) => {
@@ -59,21 +78,10 @@ export function useReservation() {
     clearError('phone');
   }, [clearError]);
 
-  const getAvailableTables = useCallback((time) => {
-    if (!selectedDate || !time) return [];
-    const occupied = new Set(
-      reservations
-        .filter((reservation) => (
-          reservation.date === selectedDate
-          && reservation.time === time
-          && ['Pending', 'Accepted'].includes(reservation.status)
-        ))
-        .map((reservation) => reservation.tableId),
-    );
-    return tables
-      .filter((table) => table.seats >= partySize && !occupied.has(table.id))
-      .sort((a, b) => a.seats - b.seats);
-  }, [partySize, reservations, selectedDate]);
+  const getAvailableTables = useCallback(time => {
+    if (data?.date !== selectedDate || data?.partySize !== partySize) return [];
+    return data.availableByTime[time] || [];
+  }, [data, partySize, selectedDate]);
 
   const isTimeAtLeastOneHourAhead = useCallback((time) => {
     if (!selectedDate || !time) return false;
@@ -92,7 +100,7 @@ export function useReservation() {
   );
   const selectedTable = useMemo(
     () => tables.find((table) => table.id === selectedTableId) || null,
-    [selectedTableId],
+    [selectedTableId, tables],
   );
 
   useEffect(() => {
@@ -121,29 +129,26 @@ export function useReservation() {
     partySize, phone, selectedDate, selectedTableId, selectedTime,
   ]);
 
-  const createReservation = useCallback(() => {
+  const createReservation = useCallback(async () => {
+    if (isSubmitting) return { ok: false, errors: {} };
     const validationErrors = validateReservation();
     if (Object.keys(validationErrors).length > 0) {
       return { ok: false, errors: validationErrors };
     }
-    const created = addReservation({
-      date: selectedDate,
-      time: selectedTime,
-      partySize,
-      tableId: selectedTable.id,
-      tableName: selectedTable.name,
-      contactName: contactName.trim(),
-      phone,
-      customerId: user?.id,
-    });
-    setSelectedTimeState('');
-    setSelectedTableId('');
-    setErrors({});
-    return { ok: true, reservation: created };
-  }, [
-    addReservation, contactName, partySize, phone, selectedDate, selectedTable,
-    selectedTime, user?.id, validateReservation,
-  ]);
+    setIsSubmitting(true);
+    try {
+      const created = await addReservation({ date: selectedDate, time: selectedTime, partySize,
+        tableId: selectedTable.id, contactName: contactName.trim(), phone });
+      setSelectedTimeState(''); setSelectedTableId(''); setErrors({});
+      await refetch();
+      return { ok: true, reservation: created };
+    } catch (failure) {
+      if (failure.status === 409) await refetch();
+      setErrors({ server: failure.message });
+      return { ok: false, errors: { server: failure.message } };
+    } finally { setIsSubmitting(false); }
+  }, [addReservation, contactName, isSubmitting, partySize, phone, refetch, selectedDate, selectedTable,
+    selectedTime, validateReservation]);
 
   const cancelReservation = useCallback(
     (id) => cancelStoredReservation(id),
@@ -156,6 +161,7 @@ export function useReservation() {
   }, [clearError]);
 
   return {
+    loading, error, refetch, isSubmitting,
     selectedDate,
     setSelectedDate,
     selectedTime,

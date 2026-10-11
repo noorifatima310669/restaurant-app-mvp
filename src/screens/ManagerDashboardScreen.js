@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  Alert, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View,
+  Alert, RefreshControl, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View,
 } from 'react-native';
+import { useApi } from '../hooks/useApi';
 import EmptyState from '../components/EmptyState';
 import { useAuth } from '../context/AuthContext';
 import { useOrders } from '../context/OrdersContext';
@@ -28,10 +29,29 @@ function SummaryCard({ icon, value, label, colors }) {
 export default function ManagerDashboardScreen() {
   const { colors } = useTheme();
   const { user } = useAuth();
-  const { orders, updateStatus } = useOrders();
+  const { orders, updateStatus: updateServerStatus, refreshOrders } = useOrders();
   const {
-    menuItems, reservations, updateMenuItem, addMenuItem, updateReservationStatus,
+    menuItems, reservations, updateMenuItem: updateServerMenu, addMenuItem,
+    updateReservationStatus: updateServerReservation, refreshMenu, refreshReservations,
   } = useRestaurant();
+  const loadDashboard = useCallback(() => Promise.all([refreshMenu(), refreshOrders(), refreshReservations()]),
+    [refreshMenu, refreshOrders, refreshReservations]);
+  const { loading, error, refetch } = useApi(loadDashboard);
+  useEffect(() => {
+    const interval = setInterval(refetch, 10000);
+    return () => clearInterval(interval);
+  }, [refetch]);
+  const [isMutating, setIsMutating] = useState(false);
+  const perform = async action => {
+    if (isMutating) return;
+    setIsMutating(true);
+    try { await action(); }
+    catch (failure) { Alert.alert('Unable to save change', failure.message); }
+    finally { setIsMutating(false); }
+  };
+  const updateStatus = (id, status) => perform(() => updateServerStatus(id, status));
+  const updateMenuItem = (id, changes) => perform(() => updateServerMenu(id, changes));
+  const updateReservationStatus = (id, status) => perform(() => updateServerReservation(id, status));
   const [segment, setSegment] = useState('Incoming Orders');
   const [newItem, setNewItem] = useState({
     name: '', description: '', price: '', category: 'Mains',
@@ -98,14 +118,12 @@ export default function ManagerDashboardScreen() {
       Alert.alert('Complete the item details', 'Add a name, a useful description, and a positive PKR price.');
       return;
     }
-    addMenuItem({
-      name: newItem.name.trim(),
-      description: newItem.description.trim(),
-      price: Math.round(price),
-      category: newItem.category,
+    perform(async () => {
+      await addMenuItem({ name: newItem.name.trim(), description: newItem.description.trim(),
+        price: Math.round(price), category: newItem.category });
+      setNewItem({ name: '', description: '', price: '', category: 'Mains' });
+      Alert.alert('Menu item added', 'The new item is saved on the restaurant server.');
     });
-    setNewItem({ name: '', description: '', price: '', category: 'Mains' });
-    Alert.alert('Menu item added', 'The new item is immediately available on the customer menu.');
   };
 
   const renderOrders = () => activeOrders.length ? activeOrders.map((order) => (
@@ -127,6 +145,7 @@ export default function ManagerDashboardScreen() {
         {ORDER_STATUSES.map((status) => (
           <Pressable
             key={status}
+            disabled={isMutating || !({ Pending: ['Preparing', 'Cancelled'], Preparing: ['Ready'], Ready: ['Served'] }[order.status] || []).includes(status)}
             onPress={() => setOrderStatus(order, status)}
             style={[styles.statusChip, {
               backgroundColor: order.status === status ? colors.primary : colors.muted,
@@ -214,7 +233,7 @@ export default function ManagerDashboardScreen() {
             </Pressable>
           ))}
         </ScrollView>
-        <Pressable onPress={submitNewItem} style={[styles.addButton, { backgroundColor: colors.primary }]}>
+        <Pressable disabled={isMutating} onPress={submitNewItem} style={[styles.addButton, { backgroundColor: colors.primary }]}>
           <Ionicons name="add-circle-outline" size={20} color={colors.background} />
           <Text style={[styles.addButtonText, { color: colors.background }]}>Add to menu</Text>
         </Pressable>
@@ -236,7 +255,7 @@ export default function ManagerDashboardScreen() {
           <View style={styles.priceRow}>
             <Text style={[styles.currency, { color: colors.textSecondary }]}>PKR</Text>
             <TextInput
-              defaultValue={String(item.price)}
+              key={`${item.id}-${item.price}`} defaultValue={String(item.price)}
               keyboardType="number-pad"
               onEndEditing={(event) => savePrice(item, event.nativeEvent.text)}
               style={[styles.priceInput, { color: colors.text, backgroundColor: colors.background, borderColor: colors.border }]}
@@ -250,7 +269,9 @@ export default function ManagerDashboardScreen() {
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
-      <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={refetch} tintColor={colors.primary} />}>
+        {error ? <EmptyState title="Dashboard unavailable" message={error} actionLabel="Retry" onAction={refetch} /> : null}
         <View style={styles.header}>
           <Text style={[styles.eyebrow, { color: colors.accent }]}>URBAN FORK OPERATIONS</Text>
           <Text style={[styles.title, { color: colors.text }]}>Good evening, {user.name.split(' ')[0]}</Text>

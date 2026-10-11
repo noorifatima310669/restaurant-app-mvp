@@ -1,0 +1,11 @@
+const router = require('express').Router();
+const controller = require('../controllers/reservationController');
+const { protect, managerOnly, customerOnly } = require('../middleware/auth');
+const { validId } = require('../middleware/errors');
+router.use(protect);
+router.post('/', customerOnly, controller.create);
+router.get('/my', customerOnly, controller.my);
+router.get('/', managerOnly, controller.list);
+router.patch('/:id', managerOnly, validId, controller.decide);
+router.patch('/:id/cancel', customerOnly, validId, controller.cancel);
+module.exports = router;

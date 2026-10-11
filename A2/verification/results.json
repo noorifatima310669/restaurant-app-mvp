@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-11",
+  "timezone": "Asia/Karachi",
+  "results": [
+    {
+      "name": "frontend-tests",
+      "exitCode": 0,
+      "passed": true,
+      "tests": 29,
+      "passedTests": 29
+    },
+    {
+      "name": "backend-tests",
+      "exitCode": 0,
+      "passed": true,
+      "tests": 81,
+      "passedTests": 81
+    },
+    {
+      "name": "lint",
+      "exitCode": 0,
+      "passed": true,
+      "tests": 0,
+      "passedTests": 0
+    },
+    {
+      "name": "syntax-imports",
+      "exitCode": 0,
+      "passed": true,
+      "tests": 0,
+      "passedTests": 0
+    },
+    {
+      "name": "expo-dependencies",
+      "exitCode": 0,
+      "passed": true,
+      "tests": 0,
+      "passedTests": 0
+    },
+    {
+      "name": "web-export",
+      "exitCode": 0,
+      "passed": true,
+      "tests": 0,
+      "passedTests": 0
+    },
+    {
+      "name": "android-export",
+      "exitCode": 0,
+      "passed": true,
+      "tests": 0,
+      "passedTests": 0
+    }
+  ]
+}
