@@ -1,6 +1,6 @@
 // Change this one address to your laptop LAN IP (ipconfig) for physical phones.
 // EXPO_PUBLIC_API_URL is an optional non-secret override; never put database/JWT secrets here.
-export const BASE_URL = (process.env.EXPO_PUBLIC_API_URL || 'https://REPLACE-ME.onrender.com/api').replace(/\/+$/, '');
+export const BASE_URL = (process.env.EXPO_PUBLIC_API_URL || 'https://urban-fork-api.onrender.com/api').replace(/\/+$/, '');
 
 export function createApiClient(fetchImpl = (...args) => fetch(...args)) {
   let token = null;
