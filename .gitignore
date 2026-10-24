@@ -8,6 +8,7 @@ AGENTS.md
 CLAUDE.md
 
 .env
+server/.env
 .env.*
 !.env.example
 coverage/

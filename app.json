@@ -1,5 +1,15 @@
 {
-  "plugins": [
-    "expo-font"
-  ]
+  "expo": {
+    "name": "Urban Fork",
+    "slug": "urban-fork-mad1",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.muradkhan.mad1app"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
 }

@@ -1,7 +1,6 @@
 // Change this one address to your laptop LAN IP (ipconfig) for physical phones.
 // EXPO_PUBLIC_API_URL is an optional non-secret override; never put database/JWT secrets here.
-export const BASE_URL =
-  process.env.EXPO_PUBLIC_API_URL || 'http://192.168.100.9:5000/api';
+export const BASE_URL = (process.env.EXPO_PUBLIC_API_URL || 'https://REPLACE-ME.onrender.com/api').replace(/\/+$/, '');
 
 export function createApiClient(fetchImpl = (...args) => fetch(...args)) {
   let token = null;
@@ -10,7 +9,7 @@ export function createApiClient(fetchImpl = (...args) => fetch(...args)) {
     const abort = () => controller.abort();
     signal?.addEventListener('abort', abort, { once: true });
     if (signal?.aborted) controller.abort();
-    const timer = setTimeout(abort, 15000);
+    const timer = setTimeout(abort, 60000);
     try {
       let response;
       try {

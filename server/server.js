@@ -7,6 +7,7 @@ const app = express();
 app.disable('x-powered-by');
 app.use(cors());
 app.use(express.json());
+app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/menu', require('./routes/menuRoutes'));
